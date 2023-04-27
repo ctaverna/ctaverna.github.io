@@ -1,0 +1,10 @@
+@media (min-width: 1200px) {
+  .intro-header .page-heading h1 {
+    font-size: 2.9rem;
+  }
+}
+
+hr.small {
+  border-width: 0.10rem;
+  max-width: 25rem;
+}
