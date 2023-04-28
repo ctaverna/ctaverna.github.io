@@ -4,14 +4,15 @@ title:  "Microservices orchestration"
 subtitle: A quite simple concept with a lot of confusion
 date:   2022-06-01
 tags: [microservices, design patterns, software architectural patterns, api gateway]
-cover-img: /2022-06-01-microservices-orchestration/cover.jpg
+imgs-path: /assets/img/2022-06-01-microservices-orchestration/
+cover-img: /assets/img/2022-06-01-microservices-orchestration/cover.jpg
 ---
 
 # The context
 We have a system based on microservices, where the codebase has been split into smaller pieces, and every component has a few responsibilities.
 In order to limit the discussion and keep the debate on this subject, let's consider a group of read-only APIs.
 
-![](apigw.jpg)
+![]({{page.imgs-path}}apigw.jpg){:.centered}
 
 In this scenario, it's quite obvious that it's a good choice to use an API Gateway. This intermediation, intended as a proxy (or more properly a reverse proxy), has many advantages, mostly related to security and observability:
 - The coupling between the client and the underlying service implementation is highly reduced
@@ -27,7 +28,7 @@ After having implemented the API Gateway as a simple routing layer, sooner or la
 
 The API Gateway might seem a reasonable place to perform aggregation of data coming from multiple services or to make a call chain that collects all the data needed to produce the response.
 
-![](apigw-error.jpg)
+![]({{page.imgs-path}}apigw-error.jpg)
 
 Well, in my opinion it's not really a good idea to put business logic in a component that should just be considered part of the infrastructure, inside an area that in some companies goes far beyond the responsibility of the development team.
 
@@ -39,7 +40,7 @@ A little different flavor of this anti-pattern, with a focus on cloud providers'
 
 The idea, which is pretty straightforward, is to introduce a service with the clear and declared responsibility of making multiple calls to the underlying services, collecting and/or accumulating data, performing data transformations, aggregations, and finally responding to the initiating request.
 
-![](orchestrator.jpg)
+![]({{page.imgs-path}}orchestrator.jpg)
 
 With this strategy, the business logic is implemented *in the code* and not *in the infrastructure* (and no, "Infrastructure as code" is not a win-win option here). 😜
 
