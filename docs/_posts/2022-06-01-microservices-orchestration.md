@@ -14,6 +14,9 @@ In order to limit the discussion and keep the debate on this subject, let's cons
 
 ![]({{page.imgs-path}}apigw.jpg){:.centered}
 
+{:.image-caption .text-align-center}
+*A simple API Gateway*
+
 In this scenario, it's quite obvious that it's a good choice to use an API Gateway. This intermediation, intended as a proxy (or more properly a reverse proxy), has many advantages, mostly related to security and observability:
 - The coupling between the client and the underlying service implementation is highly reduced
 - Multiple types of protocols can be handled
@@ -30,6 +33,9 @@ The API Gateway might seem a reasonable place to perform aggregation of data com
 
 ![]({{page.imgs-path}}apigw-error.jpg)
 
+{:.image-caption .text-align-center}
+*Sequence of microservices calls performed by the gateway*
+
 Well, in my opinion it's not really a good idea to put business logic in a component that should just be considered part of the infrastructure, inside an area that in some companies goes far beyond the responsibility of the development team.
 
 Even worst, after the introduction of multiple aggregations or compositions, we could end up with a spaghetti mix of business logic coming from different domains: an awful mess.
@@ -41,6 +47,9 @@ A little different flavor of this anti-pattern, with a focus on cloud providers'
 The idea, which is pretty straightforward, is to introduce a service with the clear and declared responsibility of making multiple calls to the underlying services, collecting and/or accumulating data, performing data transformations, aggregations, and finally responding to the initiating request.
 
 ![]({{page.imgs-path}}orchestrator.jpg)
+
+{:.image-caption .text-align-center}
+*Sequence of microservices calls performed by an orchestrator/aggregator service*
 
 With this strategy, the business logic is implemented *in the code* and not *in the infrastructure* (and no, "Infrastructure as code" is not a win-win option here). 😜
 
