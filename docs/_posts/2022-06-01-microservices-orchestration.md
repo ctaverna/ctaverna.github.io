@@ -6,6 +6,7 @@ date: 2022-06-01
 tags: [microservices, design patterns, software architectural patterns, api gateway]
 imgs-path: /assets/img/2022-06-01-microservices-orchestration/
 cover-img: /assets/img/2022-06-01-microservices-orchestration/cover.jpg
+permalink: /microservices-orchestration/
 ---
 
 {: .toc .toc-title}
