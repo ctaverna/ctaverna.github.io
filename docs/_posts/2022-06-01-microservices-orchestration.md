@@ -1,12 +1,20 @@
 ---
 layout: post
-title:  "Microservices orchestration"
-subtitle: A quite simple concept with a lot of confusion
-date:   2022-06-01
+title:  "Microservices orchestration and API gateways"
+subtitle: Many confusing names for a fairly simple concept
+date: 2022-06-01
 tags: [microservices, design patterns, software architectural patterns, api gateway]
 imgs-path: /assets/img/2022-06-01-microservices-orchestration/
 cover-img: /assets/img/2022-06-01-microservices-orchestration/cover.jpg
 ---
+
+{: .toc .toc-title}
+- [The context](#the-context)
+- [The problem](#the-problem)
+- [The "Orchestrator pattern" solution (aka Aggregator)](#the-orchestrator-pattern-solution-aka-aggregator)
+- [Is everything clear? Uh, no.](#is-everything-clear-uh-no)
+- [TLDR](#tldr)
+
 
 # The context
 We have a system based on microservices, where the codebase has been split into smaller pieces, and every component has a few responsibilities.
@@ -41,7 +49,6 @@ Well, in my opinion it's not really a good idea to put business logic in a compo
 Even worst, after the introduction of multiple aggregations or compositions, we could end up with a spaghetti mix of business logic coming from different domains: an awful mess.
 
 A little different flavor of this anti-pattern, with a focus on cloud providers' managed API Gateway services, has been sometime called [Overambitious API Gateway](https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways){:target="_blank"} but I personally think that this name is fitting very well here too.
-
 # The "Orchestrator pattern" solution (aka Aggregator)
 
 The idea, which is pretty straightforward, is to introduce a service with the clear and declared responsibility of making multiple calls to the underlying services, collecting and/or accumulating data, performing data transformations, aggregations, and finally responding to the initiating request.
