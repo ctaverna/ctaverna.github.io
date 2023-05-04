@@ -2,10 +2,10 @@
 layout: post
 title:  "Microservices orchestration and API gateways"
 subtitle: Many confusing names for a fairly simple concept
-date: 2022-06-01
+#date: 2022-06-01
 tags: [microservices, design patterns, software architectural patterns, api gateway]
-imgs-path: /assets/img/2022-06-01-microservices-orchestration/
-cover-img: /assets/img/2022-06-01-microservices-orchestration/cover.jpg
+imgs-path: /assets/img/microservices-orchestration/
+cover-img: /assets/img/microservices-orchestration/cover.jpg
 permalink: /microservices-orchestration/
 ---
 
@@ -67,7 +67,7 @@ Compared with other patterns like the "Chained microservice pattern", an orchest
 
 # Is everything clear? Uh, no.
 
-I called this pattern both "*Orchestrator*" and "*Aggregator*": good but not great.
+I just called this pattern both "*Orchestrator*" and "*Aggregator*": good but not great.
 
 The reason behind this confusion is that this pattern 50% of the time is called [Orchestration pattern](https://www.techtarget.com/searchapparchitecture/tip/Learn-the-benefits-of-microservices-orchestration){:target="_blank"} and the other 50% is called [Service aggregation pattern](https://medium.com/design-microservices-architecture-with-patterns/service-aggregator-pattern-e87561a47ac6){:target="_blank"}, but don't confuse it with the [Gateway aggregation pattern](https://medium.com/design-microservices-architecture-with-patterns/gateway-aggregation-pattern-9ff92e1771d0){:target="_blank"}, which is exactly what I have just considered an anti-pattern, a few lines above.
 
