@@ -23,7 +23,7 @@ Although it may seem something obvious, almost elementary, the meaning of arrows
 
 Let’s take a minimal, clear and simple scheme:
 
-![]({{page.imgs-path}}a-b.jpg){:.centered}
+![]({{page.imgs-path}}ab.jpg){:.centered .lightborder}
 
 {:.image-caption .text-align-center}
 Component A has *some relation* with component B
@@ -57,28 +57,31 @@ A single diagram cannot provide all the answers, and this is the reason why I th
 
 # So what?
 
-DISEGNARE LEGENDA A MANO LIBERA ED ESEMPI DI FRECCE CON TESTO
-
-![](/assets/img/hello_world.jpeg){: .float-right .max-width-50}
-
 To add details there are only a couple of possibilities:
-- adding a **label** to each arrow, which is not always the best option because the diagram will lose readability
-- introduce a **legend**, to give each type of arrow an understandable and ideally universal meaning
 
-In both cases there is a trade off between readability and explicitness.
+![]({{page.imgs-path}}labels.jpg){:.float-right .max-width-30 .lightborder}
+- *Add a **label** to each arrow*  
+This has the advantage of making the meaning quite clear, but it's not always the best option because the diagram will inevitably lose readability.
 
-![](/assets/img/hello_world.jpeg){: .float-right .max-width-50}
+![]({{page.imgs-path}}legend.jpg){:.float-right .max-width-30 .lightborder}
+- *Introduce a **legend** to the diagram*  
+In this way each graphical variation of arrow will have a different meaning. Great option to keep the diagram clean, but for the viewer can be tiring to learn the linguistic convention.
 
-In addition to a good **title** defining the purpose of the diagram, in my experience it is also important that the diagram comes with a short **description** to help the reader interpreting the diagram, providing a high-level overview.
+In both cases there is a considerable trade off between readability and explicitness.
+
+In addition to that we can also leverage a good **title** to define clearly the purpose of the diagram, and, as a consequence, the most likely meaning of the arrows.
+For example, in a diagram titled "Data ingestion flow", it's probably pretty much easy to imagine that the arrows are here to explain the direction of the data through the system, and not if the single call is a *pull* or a *push*.
+
+In my experience it is also useful to attach a short **description** to help the reader interpreting the diagram, providing a high-level overview that describes its purpose.
 
 Obviously writing a description or a legend are time-consuming activities, and therefore you have to evaluate the cost/benefit ratio.
 
 Fortunately, in some cases the **context** can be very useful to clarify the meaning of an arrow, or any other symbol within a diagram, but it's risky assuming that the context is clear to everyone and that any recipient will always be able to understand what we have in mind.
 
-Of course if the recipients of the diagram are people with whom you usually work, there is likely a kind of *shared common language*, so in most cases it's not necessary to be super specific. Also, in case of doubt it's easy to ask for a clarification.  
+Of course if the recipients of the diagram are people with whom you usually work, there is likely a kind of ***shared common language***, so in most cases it's not necessary to be super specific. Also, in case of doubt it's easy to ask for a clarification.  
 But when the diagram is going to be shared with another team, it is definitely a good idea to spend some extra time to make it as much clear as possible. This can minimize the likelihood of future misunderstandings, which could cost much, much more.
 
-![]({{page.imgs-path}}prehistoric.png){: .float-right .max-width-50}
+![]({{page.imgs-path}}prehistoric.jpg){: .float-right .max-width-50}
 
 # TLDR
 There's no secret recipe.  
