@@ -8,6 +8,11 @@
     margin-right: auto;
   }
 
+  img.lightborder {
+    border: 1px solid lightgray;
+    padding: 2px;
+  }
+
   img.float-right {
     float: right;
     clear: both;
@@ -20,6 +25,10 @@
 
   img.max-width-50 {
     max-width: 50%;
+  }
+
+  img.max-width-30 {
+    max-width: 30%;
   }
 
   .image-caption {

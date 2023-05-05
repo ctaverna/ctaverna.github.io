@@ -47,6 +47,13 @@
   overflow: hidden;
 }
 
+.post-preview .post-image {
+  filter: sepia(0.2) brightness(0.9);
+}
+.post-preview .post-image:hover {
+  filter: sepia(0) brightness(1);
+}
+
 .intro-header.big-img .post-heading h1{
   background: rgba(0, 0, 0, 0.5);
 }

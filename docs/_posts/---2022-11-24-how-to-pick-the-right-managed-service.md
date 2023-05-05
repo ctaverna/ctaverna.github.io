@@ -1,10 +1,10 @@
 ---
 layout: post
 title:  "How to pick the right managed service"
-subtitle: "A wide range of options is great but an informed choice can be time-consuming"
+subtitle: "A wide range of options is great but an informed choice can be quite time-consuming"
 tags: [software architecture, diagrams]
 imgs-path: /assets/img/how-to-pick-the-right-managed-service/
-cover-img: /assets/img/how-to-pick-the-right-managed-service/cover.jpg
+cover-img: /assets/img/how-to-pick-the-right-managed-service/caramelle.jpg
 permalink: /how-to-pick-the-right-managed-service/
 ---
 
