@@ -8,19 +8,19 @@
     margin-right: auto;
   }
 
-  img.lightborder {
-    border: 1px solid lightgray;
-    padding: 2px;
+img.lightborder {
+  border: 1px solid lightgray;
+  padding: 2px;
   }
 
-  img.float-right {
-    float: right;
-    clear: both;
+img.float-right {
+  float: right;
+  clear: both;
   }
 
   img.float-left {
-    float: left!important;
-    margin-right: 0.8rem;
+  float: left!important;
+  margin-right: 0.8rem;
 }
 
   img.max-width-50 {
@@ -81,3 +81,68 @@ ul.toc-title::before {
 }
 
 
+.box-citation {
+  background-color: #efefef;
+  /* border-left-color: #2980b9; */
+  line-height: 1.5rem;
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  border-right: 0.2em solid #dfdfdf;
+  border-bottom: 0.2em solid #dfdfdf;
+  border-radius: 0.3rem;
+  font-style: italic;
+  font-family: "'Times New Roman', Times, serif";
+}
+
+
+.box-citation::before {
+  content: "“";
+  font-size: 5rem;
+  padding-top: 0.2em;
+  font-family: "'Times New Roman', Times, serif";
+  float: left;
+  color: #d1d1d1;
+}
+
+.box-citation::after {
+  content: "”";
+  font-size: 5rem;
+  font-family: "'Times New Roman', Times, serif";
+  float: right;
+  color: #d1d1d1;
+}
+
+
+
+.box-citation.max-width-50 {
+  max-width: 50%;
+}
+
+.box-citation.max-width-30 {
+  max-width: 30%;
+}
+
+.box-citation.float-right {
+  float: right;
+  clear: both;
+  margin-right: 0.8rem;
+}
+
+.box-citation.float-left {
+  float: left!important;
+  margin-right: 0.8rem;
+}
+
+.open-quote {
+  font-size: 3rem;
+  font-family: "'Times New Roman', Times, serif";
+  float: left;
+  color: #d1d1d1;
+}
+.close-quote {
+  font-size: 3rem;
+  font-family: "'Times New Roman', Times, serif";
+  float: right;
+  color: #d1d1d1;
+}

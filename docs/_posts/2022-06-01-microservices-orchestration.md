@@ -3,7 +3,7 @@ layout: post
 title:  "Microservices orchestration and API gateways"
 subtitle: Many confusing names for a fairly simple concept
 #date: 2022-06-01
-tags: [microservices, design patterns, software architectural patterns, api gateway]
+tags: [microservices, design patterns, software architectural patterns, api gateway, cloud architecture, cloud providers]
 imgs-path: /assets/img/microservices-orchestration/
 cover-img: /assets/img/microservices-orchestration/cover.jpg
 permalink: /microservices-orchestration/
