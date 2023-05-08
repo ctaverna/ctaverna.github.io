@@ -81,7 +81,7 @@ Fortunately, in some cases the **context** can be very useful to clarify the mea
 Of course if the recipients of the diagram are people with whom you usually work, there is likely a kind of ***shared common language***, so in most cases it's not necessary to be super specific. Also, in case of doubt it's easy to ask for a clarification.  
 But when the diagram is going to be shared with another team, it is definitely a good idea to spend some extra time to make it as much clear as possible. This can minimize the likelihood of future misunderstandings, which could cost much, much more.
 
-![]({{page.imgs-path}}prehistoric.jpg){: .float-right .max-width-50}
+![]({{page.imgs-path}}sign.jpg){: .float-right .max-width-30 .lightborder}
 
 # TLDR
 There's no secret recipe.  
