@@ -55,13 +55,13 @@ img.float-right {
   ul.toc {
     float: none;
     width: 95%;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 0.8125rem;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 5px;
     list-style-position: outside;
     list-style-type: disc;
-    border-left: 5px solid lightgray;
+    border-left: 4px solid #f0f0f0;
     padding-left: 20px;
   }
 
@@ -75,6 +75,7 @@ ul.toc li a {
 }
 
 ul.toc-title::before {
+  text-transform: uppercase;
   content: "On this page";
   font-weight: 900;
   color: lightgray;
@@ -145,4 +146,61 @@ ul.toc-title::before {
   font-family: "'Times New Roman', Times, serif";
   float: right;
   color: #d1d1d1;
+}
+
+
+
+
+
+
+@media (min-width: 1200px) {
+  ul.toc {
+    width: 25% !important;
+    float: right !important;
+  }
+}
+
+@media (min-width: 500px) {
+  ul.toc {
+    width: 33% !important;
+    float: right !important;
+  }
+}
+
+ul.site-section {
+  font-size: 0.8125rem;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  list-style-position: outside;
+  list-style-type: disclosure-closed;
+  padding-left: 0;
+  padding-inline-start: 15px;
+  font-weight: bolder;
+  color: dimgray;
+}
+
+ul.site-section ul {
+  padding-inline-start: 0px;
+  list-style-type: none;
+}
+
+ul.site-section ul li a{
+  padding-inline-start: 5px;
+  font-weight: normal;
+  color: grey;
+}
+
+ul.site-section li {
+  color: lightgray;
+  margin-left: 3px;
+}
+
+ul.site-section li a {
+color: gray;
+}
+
+.site-section-title {
+  border-bottom: 1px solid gray;
+   text-align: center;
+  font-weight: 900;
+  color: lightgray;
 }

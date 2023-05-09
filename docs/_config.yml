@@ -67,6 +67,9 @@ plugins:
 
 navbar-links:
   About me: "about"
+  Resources:
+    - AWS study guide: "aws-study-guide"
+    - Pippone: "pippo"
 #  Resources:
 #    - Beautiful Jekyll: "https://beautifuljekyll.com"
 #    - Learn markdown: "https://www.markdowntutorial.com/"

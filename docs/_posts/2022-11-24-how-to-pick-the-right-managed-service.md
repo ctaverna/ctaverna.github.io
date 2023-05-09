@@ -6,6 +6,7 @@ tags: [software architecture, cloud architecture, cloud providers, aws, managed 
 imgs-path: /assets/img/how-to-pick-the-right-managed-service/
 cover-img: /assets/img/how-to-pick-the-right-managed-service/caramelle.jpg
 permalink: /how-to-pick-the-right-managed-service/
+readtime: true
 ---
 
 {: .toc .toc-title}
