@@ -1,11 +1,10 @@
 ---
-title: "Storage services"
-subtitle: "ppppp"
-category: notes-aws
-subcategory: storage
-sequence: 101
+title: "Other storage services"
+subtitle: "Services related with storage, like Snowball, Snowmobile, Storage Gateway, AWS Backup..."
 is-folder: false
-layout: page_notes
+subcategory: storage
+sequence: 3
+layout: aws_study_guide_page
 ---
 
 {: .toc .toc-title}

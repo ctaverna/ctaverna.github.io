@@ -29,18 +29,30 @@ layout: base
     </div>
 
 
-    <div class=" col-xl-2 ">
-        <div class="site-section-title">titolo</div>
+    <div class=" col-xl-2 min-padding-lr ">
+        <div class="site-section-title">AWS Study Guide</div>
         <ul class="site-section">
-        {% assign folders = site.pages | where: "category", "notes-aws" | where: "is-folder", true | sort: 'sequence' %}
+        {% assign folders = site.aws-study-guide | where: "is-folder", true | sort: 'sequence' %}
         {% for folder in folders %}
           <li {% if page.url == folder.url %} class="active"{% endif %}>
-            <a href="{{ folder.url }}">{{ folder.title }}</a>
-            {% assign articles = site.pages | where: "category", "notes-aws" | where: "subcategory", folder.subcategory | where: "is-folder", false | sort: 'sequence' %}
+            <a href="{{ folder.url }}">
+              {% if folder.menu %}
+                {{ folder.menu }}
+              {% else %}
+                {{ folder.title }}
+              {% endif %}
+            </a>
+            {% assign articles = site.aws-study-guide | where: "subcategory", folder.subcategory | where: "is-folder", false | sort: 'sequence' %}
             <ul>
             {% for article in articles %}
                 <li {% if page.url == article.url %} class="active"{% endif %}>
-                <a href="{{ article.url }}">{{ article.title }}</a>
+                <a href="{{ article.url }}">
+                  {% if article.menu %}
+                    {{ article.menu }}
+                  {% else %}
+                    {{ article.title }}
+                  {% endif %}
+                </a>
                 </li>
             {% endfor %}
             </ul>

@@ -1,0 +1,17 @@
+{% assign articles = site.aws-study-guide | where: "subcategory", include.subcategory | where: "is-folder", false | sort: 'sequence' %}
+<ul class="post-preview">
+{% for article in articles %}
+    <li {% if page.url == article.url %} class="active"{% endif %}>
+    
+      <a href="{{ article.url }}">
+        <h2 class="post-title">
+        {{ article.title }}
+        </h2>
+    </a>
+    <h3 class="post-subtitle">{{ article.subtitle }}</h3>
+    </li>
+{% endfor %}
+</ul>
+
+
+

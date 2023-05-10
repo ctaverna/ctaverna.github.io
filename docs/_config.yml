@@ -61,6 +61,14 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 
+
+
+collections:
+  aws-study-guide:
+    output: true
+
+
+
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################

@@ -1,13 +1,38 @@
 ---
 title: "VPC"
 subtitle: "Virtual Private Cloud"
-category: notes-aws
-subcategory: networking
-sequence: 101
 is-folder: false
+subcategory: networking
+sequence: 1
+layout: aws_study_guide_page
 ---
 
-# VPC
+{: .toc .toc-title}
+- [IP Addressing](#ip-addressing)
+  - [CIDR Examples](#cidr-examples)
+    - [How many IPs](#how-many-ips)
+- [Subnets](#subnets)
+- [Route tables](#route-tables)
+  - [Public subnets](#public-subnets)
+  - [Private subnets](#private-subnets)
+- [Internet gateway](#internet-gateway)
+  - [Route table example](#route-table-example)
+- [NAT Gateway](#nat-gateway)
+  - [Connectivity types](#connectivity-types)
+  - [Route table example](#route-table-example-1)
+- [NAT Instance](#nat-instance)
+- [Elastic Network Interface](#elastic-network-interface)
+- [**IPv6 Addresses**](#ipv6-addresses)
+- [Elastic IP Address](#elastic-ip-address)
+- [Security Groups](#security-groups)
+- [Network Access Control Lists (ACLs)](#network-access-control-lists-acls)
+- [Virtual Private Gateway (VGW)](#virtual-private-gateway-vgw)
+- [AWS Direct Connect (DX)](#aws-direct-connect-dx)
+- [VPC Peering connection](#vpc-peering-connection)
+- [Transit Gateway](#transit-gateway)
+- [VPC Endpoint](#vpc-endpoint)
+- [VPC Flow Logs](#vpc-flow-logs)
+
 
 Amazon Virtual Private Cloud (Amazon VPC) is your network environment in the cloud.
 
@@ -27,20 +52,20 @@ Single team or single organizations\
 Large organizations with multiple teams\
 (ie: developers with full access to DEV but limited or no access to PROD)
 
-## IP Addressing
+# IP Addressing
 
 Each VPC reserves a **range** of private IP addresses, defined using Classless Inter-Domain Routing (**CIDR**).
 
 Supports BYOIP (Bring your own IP).
 
-### CIDR Examples
+## CIDR Examples
 
 `0.0.0.0/0      -> All IPs`  
 `10.22.33.44/32 -> 10.22.33.44` \
 `10.22.33.0/24  -> 10.22.33.*` \
 `10.22.0.0/16   -> 10.22.*.*`
 
-#### How many IPs
+### How many IPs
 
 /28 = 16  \
 /27 = 32 ...\
@@ -51,7 +76,7 @@ Supports BYOIP (Bring your own IP).
 
 _It's not possible to change or modify the IP address range of an existing virtual private cloud (VPC) or subnet. However, you can add an additional IPv4 CIDR block as a secondary CIDR to your VPC, or create a new CPV and migrate your existing resources (if applicable)._
 
-## Subnets
+# Subnets
 
 VPC subnets are mapped to **specific Availability Zones** and, therefore, subnet placement is one mechanism to ensure EC2 instances are properly distributed across multiple locations.
 
@@ -67,7 +92,7 @@ Reserved IPs in every subnet:
 
 A _subnet group_ is a collection of subnets (typically private) that you can designate for your clusters running in an Amazon Virtual Private Cloud (VPC) environment.
 
-## Route tables
+# Route tables
 
 * Required to direct traffic between VPC resources
 * Each VPC has a main route table (by default only a single route that enables local communication)
@@ -75,17 +100,17 @@ A _subnet group_ is a collection of subnets (typically private) that you can des
 * All subnets MUST have an associated route table
 * Best practice: use custom route tables for each subnet
 
-#### Public subnets
+## Public subnets
 
 * Include a **routing table entry** to an **internet gateway** to support inbound/outbound access to public internet
 
-#### Private subnets
+## Private subnets
 
 * **Do not have** a **routing table entry** to an **internet gateway**
 * Are not directly accessible from the public internet
 * Typically use a **NAT gateway** to support restricted, outbound public internet access
 
-## Internet gateway
+# Internet gateway
 
 Allows communication between instances in your VPC and the internet.
 
@@ -93,7 +118,7 @@ Allows communication between instances in your VPC and the internet.
 * Attached to a **VPC**
 * Provides a target in your VPC route table for internet-routable traffic
 
-#### Route table example
+## Route table example
 
 VPC: 10.0.0.0/16\
 Subnet: 10.0.10.0/24
@@ -103,7 +128,7 @@ Subnet: 10.0.10.0/24
 | 10.0.0.0/16 | local               | Route local VPC traffic |
 | 0.0.0.0/0   | internet-gateway-id | Internet traffic        |
 
-## NAT Gateway
+# NAT Gateway
 
 A NAT gateway is a Network Address Translation (NAT) managed service.
 
@@ -117,7 +142,7 @@ You can use a NAT gateway so that instances in a _private_ subnet can connect to
 * Private IP address or Elastic IP address **cannot be detached**.\
   To use a different IP you must create a new NAT gateway, update your route tables, and then delete the existing NAT gateway.
 
-#### Connectivity types
+## Connectivity types
 
 * **Public NAT Gatway** _(default)_\
   __Instances in private subnets can connect to the internet through a public NAT gateway, but cannot receive unsolicited inbound connections from the internet.
@@ -134,7 +159,7 @@ You can use a NAT gateway so that instances in a _private_ subnet can connect to
     * Virtual Private Gateway
     * If you route traffic from the private NAT gateway to the internet gateway, the internet gateway **drops** the traffic
 
-#### Route table example
+## Route table example
 
 \`VPC: 10.0.0.0/16\
 Subnet: 10.0.10.0/24
@@ -144,13 +169,13 @@ Subnet: 10.0.10.0/24
 | 10.0.0.0/16 | local          | Route local VPC traffic |
 | 0.0.0.0/0   | nat-gateway-id | Internet traffic        |
 
-## NAT Instance
+# NAT Instance
 
 A NAT Instance is a NAT device on an EC2 instance.
 
 It is recommended to use NAT gateways because they provide better availability and bandwidth and require less effort on your part to administer.
 
-## Elastic Network Interface
+# Elastic Network Interface
 
 * Virtual network interface that you can attach to an instance in a VPC.
 * You can detach it from an instance, and attach it to another instance.
@@ -164,18 +189,18 @@ It is recommended to use NAT gateways because they provide better availability a
   * Create a low-budget, high-availability solution.
 * You can attach a **network interface in one subnet to an instance in another subnet** in the same VPC; however, both the network interface and the instance **must reside in the same AZ.**
 
-### **IPv6 Addresses**
+# **IPv6 Addresses**
 
 When you enable IPv6 in your VPC, the network operates in dual-stack mode, meaning that IPv4 and IPv6 commutations are independent of each other.\
 ****Your resources can communicate over **IPv4, IPv6, or both**.
 
-## Elastic IP Address
+# Elastic IP Address
 
 * **Static, public** IP address (only IPv4, max 5 per region)
 * Associated with an **instance** or a **network interface**
 * Accessed through the **Internet Gateway** (so traffic through VPN cannot access the elastic ip address)
 
-## Security Groups
+# Security Groups
 
 * Virtual firewall for both **ingress and egress** traffic **to aws resources**
 * **Allow outbound** and **deny inbound** traffic **by default**
@@ -186,7 +211,7 @@ When you enable IPv6 in your VPC, the network operates in dual-stack mode, meani
   * Application: Inbound rule allowing http (80) - Source WebTier
   * Database: Inbound rule allowing TCP (3306) - Source AppTier
 
-## Network Access Control Lists (ACLs)
+# Network Access Control Lists (ACLs)
 
 * Virtual firewalls at the **subnet** boundary
 * **Allow all** inbound and outbound traffic **by default**
@@ -194,7 +219,7 @@ When you enable IPv6 in your VPC, the network operates in dual-stack mode, meani
 * To be used mainly for standard compliance
 * Best practice is to act it **redundantly with SG,** as a second layer of defense
 
-## Virtual Private Gateway (VGW)
+# Virtual Private Gateway (VGW)
 
 * Enables you to **establish private connections** (VPNs) **between a VPC and another network** (your own network).
 * Hardware backed
@@ -203,7 +228,7 @@ When you enable IPv6 in your VPC, the network operates in dual-stack mode, meani
 * Supports **multiple VPNs**
 * As an alternative can be used an EC2 with a VPN software (not the best option)
 
-## AWS Direct Connect (DX)
+# AWS Direct Connect (DX)
 
 * Dedicated, private **network connection** of either 1 or 10 Gbps
 * It is provisioned through partners
@@ -215,7 +240,7 @@ When you enable IPv6 in your VPC, the network operates in dual-stack mode, meani
   * Security and compliance
 * VGW-------DX-------RemoteNetwork
 
-## VPC Peering connection
+# VPC Peering connection
 
 * No hardware, no SPoF
 * No bandwith bottleneck
@@ -232,7 +257,7 @@ When you enable IPv6 in your VPC, the network operates in dual-stack mode, meani
   * Add a **route** in the **peer VPC to local VPC** address range
 * It's a **one-to-one** relationship, can't be transitive
 
-## Transit Gateway
+# Transit Gateway
 
 * Connects up to **5.000 VPCs and on-premises environments** with a single gateway
 * Acts as a hub for all traffic
@@ -241,7 +266,7 @@ When you enable IPv6 in your VPC, the network operates in dual-stack mode, meani
 * Each VPC route table: `Destination - target 10.1.0.0/16 - local 10.0.0.0/8 - tgw`
 * Transit gateway route table: `Destination - target 10.1.0.0/16 - vpc1 10.2.0.0/16 - vpc2 10.3.0.0/16 - vpc3`
 
-## VPC Endpoint
+# VPC Endpoint
 
 * Enables a **private connection** between a **VPC** and another AWS **service in the same region**, without traversal over the internet or NAT, VPN or DX.
 * HA, redundant, horizontally scaled, no hw
@@ -250,7 +275,7 @@ When you enable IPv6 in your VPC, the network operates in dual-stack mode, meani
   * **Interface endpoints** is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported service (many)
   * **Gateway endpoint** is a gateway that is a target for a specified route in your route table, used for traffic destined to a supported AWS service (S3 and DynamoDB)
 
-## VPC Flow Logs
+# VPC Flow Logs
 
 It's an option that can be used to debug network traffic.
 

@@ -1,12 +1,14 @@
 ---
 title: "API gateway"
-subtitle: aaaaa
-category: notes-aws
-subcategory: networking
-sequence: 110
+subtitle: "Create, publish, maintain, monitor, and secure APIs at any scale"
 is-folder: false
-layout: page_notes
+subcategory: networking
+sequence: 5
+layout: aws_study_guide_page
 ---
+
+{: .toc .toc-title}
+- [API Gateway](#api-gateway)
 
 # API Gateway
 
@@ -16,3 +18,4 @@ layout: page_notes
 * Protection from DDoS and injections
   
 
+**.....WIP.....**

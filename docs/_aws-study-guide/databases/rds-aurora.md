@@ -1,11 +1,10 @@
 ---
-title: "RDS / Aurora"
-subtitle: "cccccc"
-category: "notes-aws"
-subcategory: "databases"
-sequence: 2
+title: "RDS + Aurora"
+subtitle: "Relational Database Service"
 is-folder: false
-layout: page_notes
+subcategory: "databases"
+sequence: 1
+layout: aws_study_guide_page
 ---
 
 {: .toc .toc-title}
