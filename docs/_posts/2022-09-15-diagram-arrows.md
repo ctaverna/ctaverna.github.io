@@ -15,7 +15,7 @@ permalink: /diagram-arrows/
 - [TLDR](#tldr)
 
 
-# It's just an arrow!
+## It's just an arrow!
 
 Arrows are used in almost every types of diagrams, and software architectural diagrams are no exception.
 
@@ -29,7 +29,7 @@ Let’s take a minimal, clear and simple scheme:
 Component A has *some relation* with component B
 
 
-# Ok, that's not just an arrow
+## Ok, that's not just an arrow
 
 The clarity is only apparent, because observing these two components connected by an arrow we can imagine many different interpretations, each of which does make sense but with very different meanings:
 
@@ -55,7 +55,7 @@ There are also other aspects, definitely no less mportant, that an arrow itself 
 
 A single diagram cannot provide all the answers, and this is the reason why I think that when you draw a good diagram you should try to provide only **some** information, as clearly as possible.
 
-# So what?
+## So what?
 
 To add details there are only a couple of possibilities:
 
@@ -83,7 +83,7 @@ But when the diagram is going to be shared with another team, it is definitely a
 
 ![]({{page.imgs-path}}sign.jpg){: .float-right .max-width-30 .lightborder}
 
-# TLDR
+## TLDR
 There's no secret recipe.  
 An arrow itself just tells that **probably** at least one of the connected parts is aware that the other one exists.  
 To add more information you have to add details, and the tough part is to decide how much it makes sense to be detailed.

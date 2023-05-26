@@ -20,12 +20,12 @@ During a feature development it may happen that it's advisable to introduce a ne
 In some cases the choice is quite easy, because in the context of the project, there are no equally valid alternatives or because that service is a universally recognized as optimal, or at least the preferable one.
 To be clear, there are *always* alternatives to consider, but in some cases it doesn't make sense to spend a lot of time evaluating all the options because one of them is very clearly recommended.
 
-# A *fairly* easy example
+## A *fairly* easy example
 
 Let's take the example of a use case where a software component needs a cache to reduce the number of requests made to the database and increase the throughput. It is an application hosted on a cloud provider, and there are no tight budget constraints. Data volumes are not extremely heavy and we need a simple in-memory key-value store. The best strategy could be almost obvious: use *Redis* as a managed service. Minimal infrastructure impact for the devops team, adoption of an established and standard tool, known and loved by developers, etc etc.
 We could talk for hours about all the possible alternatives, nuances of configuration and different possible options, but all in all I think that 90% of people would agree and would suggest the same strategy.
 
-# A *not-so-easy* example
+## A *not-so-easy* example
 
 ![]({{page.imgs-path}}headache.jpg){: .float-right .max-width-50 .lightborder}
 
@@ -44,7 +44,7 @@ An example that recently happened to me: which storage should I use for metrics 
 
 The issue is not simple, and the effect of this choice can have a huge impact on costs, on the time needed to achieve the result and on its final value.
 
-# A rational analytic approach
+## A rational analytic approach
 ![]({{page.imgs-path}}abacus.jpg){: .float-right .max-width-50 .lightborder}
 
 The most natural approach, since after all we are software engineers, is to ask ourselves some questions, pull out something measurable, and weigh the pros and cons.
@@ -80,7 +80,7 @@ A further bad news is that to follow such an analytical approach we should answe
 Also, when the choice is not only on a single component but involves more than one, the amount of possible variables grows exponentially, and consequently the number of assessments in charge to the decision maker.
 In these cases, this type of approach, which is always preferable in principle, could become very challenging, or even unsustainable.
 
-#  An intuitive approach - the expert's opinion
+##  An intuitive approach - the expert's opinion
 
 In order not to get bogged down into a never-ending analysis, at this point the only way out is to use the experience, built mostly on past mistakes and successes, to make a choice dictated *also* by a small instinctive component.
 
@@ -101,6 +101,6 @@ When it comes to software architecture is always good to be flexible and find a 
 
 Last but not least, once the decision is made, it is *fundamental* to document it as an ADR (architectural decision record), for a long series of good reasons, that maybe in the future I will talk about in a dedicated article.
 
-# TLDR
+## TLDR
 Make a conscious choice in cloud providers' rich offer is tough and requires a multi-disciplinary approach, but there are some questions that we can ask ourselves to simplify the process. 
 It's good to be analytical but to be faster enough for the business it's also important to be pragmatic and leverage your experience in order to reduce the amount of evaluations.
