@@ -1,6 +1,23 @@
 ---
-description: A bunch of AWS services for DevOps CI/CD processes
+title: "Other developer tools"
+subtitle: "Other tools related to software development lifecycle "
+is-folder: false
+subcategory: "tools"
+sequence: 7
+layout: aws_study_guide_page
 ---
+
+{: .toc .toc-title}
+- [Other developer tools](#other-developer-tools)
+  - [Cloud9](#cloud9)
+  - [CodeCommit](#codecommit)
+    - [Repository Notifications](#repository-notifications)
+    - [**Repository Triggers** ](#repository-triggers-)
+  - [X-Ray](#x-ray)
+  - [CodeStar](#codestar)
+  - [CodeArtifact](#codeartifact)
+  - [CodeGuru](#codeguru)
+
 
 # Other developer tools
 

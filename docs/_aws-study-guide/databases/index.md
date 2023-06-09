@@ -2,7 +2,7 @@
 title: "Databases"
 is-folder: true
 subcategory: databases
-sequence: 50
+sequence: 7
 layout: aws_study_guide_page
 permalink: /aws-study-guide/databases
 ---

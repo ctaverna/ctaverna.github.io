@@ -2,7 +2,7 @@
 title: "Storage"
 is-folder: true
 subcategory: storage
-sequence: 200
+sequence: 6
 layout: aws_study_guide_page
 permalink: /aws-study-guide/storage
 ---

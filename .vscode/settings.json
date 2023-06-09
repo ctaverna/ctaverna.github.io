@@ -1,0 +1,14 @@
+{
+    "grammarly.selectors": [
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "docs/_posts/2023-05-25-adr.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "docs/_posts/2022-11-24-how-to-pick-the-right-managed-service.md"
+        }
+    ]
+}
