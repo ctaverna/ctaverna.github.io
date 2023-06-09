@@ -19,8 +19,11 @@ I am a visual guy, my usual way to study is...
 
 
 
+AWS offers extensive documentation and well-written FAQs for all of their services. These two will be your   primary source of *information* when studying.
 
-
+- *ggg*
+- _kkk_
+- 
 
 
 
