@@ -2,7 +2,7 @@
 layout: post
 title:  "Design for failure by using Dead Letter Queues (DLQ)"
 subtitle: "What are dead letters and why they are essential in any distributed system"
-tags: [software architecture, documentation]
+tags: [software architecture, message brokers, messaging, distributed systems]
 imgs-path: /assets/img/dead-letters/
 cover-img: /assets/img/dead-letters/cover.jpg
 permalink: /dead-letters/
@@ -30,7 +30,7 @@ Let's start with a short definition, effective in the context of distributed sys
 **A *dead letter* is simply a container where *messages* that cannot be delivered are collected and stored.**
 
 This container is usually a queue, but it's not strictly mandatory, the concept is broader and not necessarily based on it.  
-This article is not focused on a specific broker or technology, but addresses the subject from a general perspective. Each system has its specificities, and the official documentation is definitely the way to go. 
+This article is not focused on a specific broker or technology, but addresses the subject from a general perspective. Each system has its specificities, and the official documentation is definitely the way to go.
 
 ## A short off-topic about the name
 The term "dead letter" is due to an expression borrowed by the postal world.  
@@ -49,7 +49,7 @@ Hence we need to design systems so that they will continue to work, as much as p
 Any asynchronous communication can potentially encounter different kinds of problems related to delivery:
 - The recipient is not available
 - The recipient explicitly refuses the message
-- The recipient cannot correctly handle the request and is not giving an _acknowledge_ to the message
+- The recipient is not giving an _acknowledge_ to the message
 
 The problem can be transient or persistent, and the consequent action should change accordingly.  
 But when a delivery failure happens, the broker between two components has only a few options:
@@ -83,15 +83,15 @@ On the contrary, if after an investigation we know that the messages are wrong a
 
 ### Observability for free
 If you are using a message broker you likely already have a monitoring platform.  
-In this case, it will be almost immediate to activate observability principles also on that queue, with very little additional effort.  
-The rate of messages entering the DLQ, compared with the rate of the main queue, is a good metric for the health status of the process run by the consumers. The absolute quantity of messages in the dead letter is telling us how many failures we had since the last purge, and if the DLQ is usually empty, this metric is a good choice for automatic alerts.
+In this case, it will be almost immediate to activate observability principles also on the DLQ, with very little additional effort. No need to generate custom metrics in your code or analyze log files to understand and count errors, because the broker, if configured properly, can do it for you.  
+The rate of messages entering the DLQ, compared with the rate of the main queue, is a good metric for the health status of the process run by the consumers. The absolute quantity of messages in the dead letter is telling us how many failures we had since the last purge, and if the rate has a predictable trend or DLQ is usually empty, these metrics are also good choices for automatic alerts.  
 
 ### No custom code
 Most brokers, when sending a message to the dead letter, add in the header of the message a field with the reason why this has happened. It may be a broker-generated error like "too many retries" or "message expired", or maybe a consumer-generated and broker-forwarded error like "explicitly nacked with this error message: unknown id".   
 The reason for dead-lettering is put inside the message itself, and this comes for free, without writing code, because it is implemented *in the broker*, not in the consumer software.
 
 ### Not so good for analysis
-The only little disadvantage that I experienced using DLQs, compared to other solutions like for example a database, is the fact that messages in a queue cannot be easily queried and counted, but can only be peeked one by one. In case of a huge number of messages, it can be a good idea to attach a consumer and move them into a data store where it is possible to analyze them statistically.  
+The only little disadvantage that I experienced using DLQs, compared to other solutions like a database, is the fact that messages in a queue cannot be easily queried and counted, but can only be peeked one by one. In case of high volumes and considerable quantities of messages ending up in a dead letter, it can be a good idea to attach a consumer and move them into a data store where it is possible to analyze them statistically.  
 
 ## TLDR
-Dead letter queues are definitely the best place to save error messages and poison messages. Monitoring is richer and easier, re-publishing and purging is super fast and the broker itself is responsible for this process.
+Dead letter queues are definitely the best place to save error messages and poison messages. Monitoring is richer and easier, re-publishing and purging is super fast and the broker itself owns the responsibility of this process.  
