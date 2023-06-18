@@ -39,7 +39,9 @@ In the real world, there are many reasons for a letter or a package to be marked
 All postal companies in different countries have faced the problem of handling all undeliverable mail, usually with a dedicated office having the critical responsibility of opening private letters and packages, searching for clues about the recipient or the sender, to finally becoming able to deliver it or move to the extreme solution of destroying or auctioning the content.  
 If you like to waste some time reading fun facts, consider googling about the story and the statistics of *Dead Letter Offices* all around the world, you'll find many astonishing numbers and funny stories about strange contents, from alive rattlesnakes to smelly dead fishes, human skulls, bags full of money, drugs, and weapons.  
 
+
 ## Design for failure
+![a fire extinguisher]({{page.imgs-path}}fire.jpg){: .float-right .max-width-50 .lightborder}
 Jumping back to the field of distributed systems, when a messaging system has the responsibility of the asynchronous communication between components, it's essential to provide a mechanism to handle the failures.  
 This is, in general, a piece of good advice. Like the Amazon CTO Werner Vogels has wisely said: "Everything fails, all the time".  
 In other words, the point is not *IF* something will fail, but only *WHEN* this will happen.  
