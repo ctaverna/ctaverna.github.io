@@ -19,7 +19,7 @@ layout: aws_study_guide_page
   - [Commands](#commands-1)
 - [CloudWatch Agent](#cloudwatch-agent-1)
 
-WIP introduction
+CloudWatch is a robust monitoring solution for AWS resources.
 
 * Region scope
 * Fault tolerant
@@ -33,9 +33,15 @@ WIP introduction
 
 #### Functionalities
 
-* Push, not pull
-* Collects and tracks **metrics**
-* Enables you to **create alarms** and send notifications
+* **Push**, not _pull_
+* Collects and tracks data points in time, called **metrics**, with a default frequency of 1 minute?
+* A **dimension** is a name/value pair to help identify a metric (max 10).  
+(example: InstanceId=1-234567 / InstanceType=m1.large)
+* A **statistic** is an aggregation of metric values over time  
+(sum, minimum, maximum, average, sampleCount, pNN.NN = percentile)
+* A **namespace** is a container for a collection of related _metrics_  
+(example: AWS/EC2/CPUUtilization)
+* Enables you to create **alarms**, based on _metrics_, and send notifications to _targets_
 * Can **trigger changes in capacity**, based on rules that you set
 * An **Event** describes changes in AWS resources
 * A **Rule** matches incoming events and routes them to targets
