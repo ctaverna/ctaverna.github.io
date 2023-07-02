@@ -1,5 +1,5 @@
 ---
-title: "The AWS infrastrucure"
+title: "The AWS infrastructure"
 subtitle: "An overview of the AWS infrastructure"
 is-folder: false
 subcategory: "concepts"
@@ -12,12 +12,11 @@ layout: aws_study_guide_page
 - [Choosing a region](#choosing-a-region)
 
 Some numbers to remember:
-* 27 Regions
-* 87 Availability zones
+* 31 Regions
+* 99 Availability zones
 * 400+ edge locations + 13 regional edge caches
 
-_(Updated September 2022)_
-
+_(Updated June 2023)_
 
 ## Advantages of cloud computing
 
