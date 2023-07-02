@@ -9,6 +9,10 @@
             "language": "markdown",
             "scheme": "file",
             "pattern": "docs/_posts/2022-11-24-how-to-pick-the-right-managed-service.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file"
         }
     ]
 }
