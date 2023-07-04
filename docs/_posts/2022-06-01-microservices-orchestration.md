@@ -17,7 +17,7 @@ permalink: /microservices-orchestration/
 - [TLDR](#tldr)
 
 
-# The context
+## The context
 We have a system based on microservices, where the codebase has been split into smaller pieces, and every component has a few responsibilities.
 In order to limit the discussion and keep the debate on this subject, let's consider a group of read-only APIs.
 
@@ -35,7 +35,7 @@ In this scenario, it's quite obvious that it's a good choice to use an API Gatew
 - It can collect usage metrics and generate correlation ids
 - It can provide an external cache and apply rate-limiting
 
-# The problem
+## The problem
 After having implemented the API Gateway as a simple routing layer, sooner or later we will deal with the need to call **more than one service** to satisfy a request: we may perhaps need to *merge* data that comes from multiple microservices, or we may need to call a service and then use its response to perform requests to other services, doing what is usually called API *composition*.
 
 The API Gateway might seem a reasonable place to perform aggregation of data coming from multiple services or to make a call chain that collects all the data needed to produce the response.
@@ -50,7 +50,7 @@ Well, in my opinion it's not really a good idea to put business logic in a compo
 Even worst, after the introduction of multiple aggregations or compositions, we could end up with a spaghetti mix of business logic coming from different domains: an awful mess.
 
 A little different flavor of this anti-pattern, with a focus on cloud providers' managed API Gateway services, has been sometime called [Overambitious API Gateway](https://www.thoughtworks.com/radar/platforms/overambitious-api-gateways){:target="_blank"} but I personally think that this name is fitting very well here too.
-# The "Orchestrator pattern" solution (aka Aggregator)
+## The "Orchestrator pattern" solution (aka Aggregator)
 
 The idea, which is pretty straightforward, is to introduce a service with the clear and declared responsibility of making multiple calls to the underlying services, collecting and/or accumulating data, performing data transformations, aggregations, and finally responding to the initiating request.
 
@@ -65,7 +65,7 @@ It is possible to create multiple orchestrators, to handle requests in an orderl
 
 Compared with other patterns like the "Chained microservice pattern", an orchestrator can speed up the time to market because it will likely need a fewer number of tests. Also, it is a good example of the [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself){:target="_blank"} principle, and lowers the risk of unexpected breaking changes, with the additional advantage of keeping the microservice lean, clean, and essential.
 
-# Is everything clear? Uh, no.
+## Is everything clear? Uh, no.
 
 I just called this pattern both "*Orchestrator*" and "*Aggregator*": good but not great.
 
@@ -78,5 +78,5 @@ This pattern is sometimes (e.g. by Microsoft) considered "the problem" and the s
 Last but not least, Microsoft itself calls the pattern [Gateway aggregation](https://docs.microsoft.com/en-us/azure/architecture/patterns/gateway-aggregation){:target="_blank"} with this recommendation: "Instead of building aggregations into the gateway, consider placing an aggregation service behind the gateway". Oh, gosh, so the idea is to implement a *gateway aggregation* with the aggregation process itself *outside* the gateway.  
 I agree, but I got a headache.
 
-# TLDR
+## TLDR
 Don't waste your time on pattern names and definitions, but focus on the core concept of **orchestrator/aggregator**: a service that calls other services to keep the business logic tidy.
