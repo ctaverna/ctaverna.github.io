@@ -35,7 +35,7 @@ When the quantity of data is huge you cannot simply save it on a relational data
 So we added a sort of a **sniffer component**, that started to consume events from Kinesis and to save them into OpenSearch, after a quick enrichment/denormalization process.  
 The result was an index with all the data from all devices, and OpenSearch has proven to be a great tool for our troubleshooting needs.
 
-![Data "sniffing" for cross-checking the processed data]({{page.imgs-path}}arch2.jpg){: .centered .lightborder}
+![Data "sniffing" to enable cross-checking on processed data]({{page.imgs-path}}arch2.jpg){: .centered .lightborder}
 
 {:.image-caption .text-align-center}
 Data "sniffing" for cross-checking the processed data
@@ -81,7 +81,7 @@ If, for example, the need is to check what exactly a specific device has sent th
 Instead, if the need is for example to study a trend during the last year, the compressed monthly indexes are the right data source.  
 
 A negative aspect of this solution is that when we start working on a visualization we have to decide in advance on which of the two data sources we want to work. The schema is different so a visualization created on the daily index will not work on the monthly indexes and vice-versa.  
-It's not really a major problem, because usually you know well what source fits well on the specific need. Anyway, the index rollup feature is for sure better from this point of view, because the data source is the same and you don't have to handle this double data source.
+It's not really a major problem, because usually you know well what source fits well on the specific need. Anyway, the index rollup feature is for sure better from this point of view, because the index is the same and you don't have to handle this double data source.
 
 ## Some quick calculations
 
