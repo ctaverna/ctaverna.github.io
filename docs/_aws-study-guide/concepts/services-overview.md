@@ -20,7 +20,6 @@ layout: aws_study_guide_page
 
 This page is just a listing of some core services, as an additional help to memorize them from different perspectives.
 
---- 
 
 # Services grouped by scope
 

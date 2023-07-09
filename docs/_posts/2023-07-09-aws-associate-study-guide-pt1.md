@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "AWS Associate Level Certifications Study Guide - Part 1"
-subtitle: "My recap notes for certification exams"
+title:  "Study Guide for AWS Associate Level Certifications - Part 1"
+subtitle: "My recap notes for the 3 certification exams"
 tags: [aws, certifications]
 imgs-path: /assets/img/aws-associate-study-guide/
 cover-img: /assets/img/aws-associate-study-guide/cover.jpg
@@ -12,12 +12,13 @@ While studying for the 3 AWS Associate level certifications I started taking not
 
 This is because to remember things I have to write them down, producing short summaries of the information I am reading. And this is the only method that works for me.  
 I later realized that this **recap content**, in addition to being a support to me as a refresher before the exams, might also be useful to others, so I decided to publish it on my blog.
-
 I think and hope that it could be used as an additional study source, as a refresher, or even as a super-fast introduction to some AWS topics that you are approaching.
 
-I will release them gradually over the coming weeks, after a small review.
+I will release the content gradually **over the coming weeks**, after a small review.  
+The content of the three exams is different, but there is a lot of overlap, and a general overview can be useful in any case, if you are studying for [AWS Certified Developer - Associate](https://aws.amazon.com/certification/certified-developer-associate/), [AWS Certified Developer - Associate](https://aws.amazon.com/certification/certified-developer-associate/) or [AWS Certified SysOps Administrator - Associate](https://aws.amazon.com/certification/certified-sysops-admin-associate/).
+In the end, I will also share a table with a matrix to better understand what are the services on which each exam is focused.
 
-This is the content of **Part 1**, released today:
+This is the content that comes with **Part 1**, released today:
 
 - [Introduction](https://ctaverna.github.io/aws-study-guide/)
 - **Concepts**
@@ -42,11 +43,7 @@ This is the content of **Part 1**, released today:
   - [Secrets](https://ctaverna.github.io/aws-study-guide/security-identity-compliance/secrets/)
 
 
+In the next part I will share my notes about computing, databases, storage, developer tools, and many more.  
+I will also release a collection of the most interesting **sample exam questions** that I have come across while studying and practicing.
 
-
-
-I will release soon the other documents about computing, databases, storage, developer tools, etc...
-
-After all my notes, I will also release a collection of the most interesting **sample exam questions** that I found while studying and practicing.
-
-Please let me know if you think that this is useful or if you find errors or inaccuracies in the content.
+Please let me know if you find this useful in any way or if you find errors or inaccuracies in the content.
