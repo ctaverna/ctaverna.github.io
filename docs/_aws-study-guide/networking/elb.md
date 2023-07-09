@@ -3,7 +3,7 @@ title: "ELB"
 subtitle: "Elastic Load Balancer"
 is-folder: false
 subcategory: networking
-sequence: 2
+sequence: 3
 layout: aws_study_guide_page
 ---
 
@@ -11,17 +11,15 @@ layout: aws_study_guide_page
 - [Target group](#target-group)
 - [Application LB](#application-lb)
 - [Network LB](#network-lb)
-- [WIP Second region mostly for DR](#wip-second-region-mostly-for-dr)
-- [WIP Round robin](#wip-round-robin)
 
 
 Managed load balancing service that distributes traffic to EC2 instances, containers and IP addresses (+ metrics to cloudwatch).
 
-* **HTTP, HTTPS, TCP and SSL** (Secure TCP)
-* Can be **external or internal** facing
-* Each load balancer is given a **DNS name**
-* Recognizes and responds to **unhealthy instances**
-* \*\*Sticky sessions (\*\*load balancer-generated cookies only)
+- **HTTP, HTTPS, TCP and SSL** (Secure TCP)
+- Can be **external or internal** facing
+- Each load balancer is given a **DNS name**
+- Recognizes and responds to **unhealthy instances**
+- **Sticky sessions** (load balancer-generated cookies only)
 
 # Target group
 
@@ -29,20 +27,9 @@ The target group is the connection between the load balancer and, for example, a
 
 # Application LB
 
-* HTTP, HTTPS (Layer 7)
+- HTTP, HTTPS (Layer 7)
 
 # Network LB
 
-* TCP, TLS, UDP (Layer 4)
-
-WIP
-
-
-
-# WIP Second region mostly for DR
-
-
-
-# WIP Round robin
-
+- TCP, TLS, UDP (Layer 4)
 

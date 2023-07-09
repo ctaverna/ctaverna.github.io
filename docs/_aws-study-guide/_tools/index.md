@@ -2,7 +2,7 @@
 title: "Tools"
 is-folder: true
 subcategory: tools
-sequence: 2
+sequence: 99
 layout: aws_study_guide_page
 permalink: /aws-study-guide/tools
 ---

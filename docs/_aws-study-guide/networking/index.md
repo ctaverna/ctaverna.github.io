@@ -2,7 +2,7 @@
 title: "Networking"
 is-folder: true
 subcategory: networking
-sequence: 4
+sequence: 2
 layout: aws_study_guide_page
 permalink: /aws-study-guide/networking
 ---

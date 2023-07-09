@@ -14,8 +14,10 @@ layout: aws_study_guide_page
   - [IAM Groups](#iam-groups)
   - [IAM Role](#iam-role)
 - [**IAM Policies**](#iam-policies)
-- [**Applying permissions**](#applying-permissions)
-- [ARN ](#arn-)
+  - [Example Policy 1](#example-policy-1)
+  - [Example Policy 2](#example-policy-2)
+- [Applying permissions](#applying-permissions)
+- [ARN](#arn)
     - [Examples](#examples)
 
 
@@ -88,11 +90,11 @@ Roles can be used to assign permissions to users or services on a **temporary ba
   * **Attached to**: users / group / role
   * **Types**: AWS-managed / Customer-managed / Inline
     * **AWS-managed policies**\
-      ****created by AWS and managed centrally in IAM
+      created by AWS and managed centrally in IAM
     * **Customer-managed policies**\
-      ****created by the customer and managed centrally in IAM
+      created by the customer and managed centrally in IAM
     * **Inline policies**\
-      ****created by the customer and attached and managed directly at the identity principal
+      created by the customer and attached and managed directly at the identity principal
 * A single policy document can have multiple statements (_sid_ field is optional).
 * If the policy is attached to a resource rather than to an IAM identity, then the policy must also specify a principal (to whom the policy applies)
 
@@ -106,10 +108,8 @@ _**Resource:**_ You can restrict the policy to a particular object, or particula
 Use the acronym EAR to remember the three attribute-value pairs
 
 
-
-<details>
-
-<summary>Example of a policy to allow read and write access to objects in an S3 Bucket</summary>
+### Example Policy 1
+Example of a policy to allow read and write access to objects in an S3 Bucket
 
 ```json
 {
@@ -131,11 +131,9 @@ Use the acronym EAR to remember the three attribute-value pairs
 }
 ```
 
-</details>
+### Example Policy 2
 
-<details>
-
-<summary>Example of a policy to allow a Lambda function access a DynamoDB table</summary>
+Example of a policy to allow a Lambda function access a DynamoDB table
 
 ```json
 {
@@ -180,15 +178,14 @@ Use the acronym EAR to remember the three attribute-value pairs
 }
 ```
 
-</details>
 
-## **Applying permissions**
+## Applying permissions
 
 * **Attach** a policy to an IAM principal
 * A **single policy** can be **attached to multiple entities**
 * A **single entity** can have **multiple policies** attached to it
 
-## ARN&#x20;
+## ARN
 
 An ARN (Amazon Resource Name) always starts with **arn:** and can include the following components to identify a particular AWS resource uniquely:
 

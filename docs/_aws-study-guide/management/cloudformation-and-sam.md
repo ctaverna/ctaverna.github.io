@@ -8,39 +8,38 @@ layout: aws_study_guide_page
 ---
 
 {: .toc .toc-title}
-- [CloudFormation **entities**](#cloudformation-entities)
-  - [**Stacks**](#stacks)
-  - [**Change Sets**](#change-sets)
-  - [**Permissions**](#permissions)
-- [**Template anatomy**](#template-anatomy)
-  - [**AWSTemplateFormatVersion**](#awstemplateformatversion)
-  - [**Description**](#description)
-  - [**Metadata**](#metadata)
-    - [AWS::CloudFormation:Init](#awscloudformationinit)
-    - [AWS::CloudFormation::Interface](#awscloudformationinterface)
-    - [AWS::CloudFormation::Designer](#awscloudformationdesigner)
+- [CloudFormation entities](#cloudformation-entities)
+  - [Stacks](#stacks)
+  - [Change Sets](#change-sets)
+  - [Permissions](#permissions)
+- [Template anatomy](#template-anatomy)
+  - [AWSTemplateFormatVersion](#awstemplateformatversion)
+  - [Description](#description)
+  - [Metadata](#metadata)
   - [**Parameters**](#parameters)
-    - [Pseudoparameters (automatically defined by AWS)](#pseudoparameters-automatically-defined-by-aws)
   - [**Mappings**](#mappings)
   - [**Conditions**](#conditions)
   - [**Transform**](#transform)
-  - [**Resources (required)**](#resources-required)
-    - [**Custom Resources**](#custom-resources)
-    - [**Resource Relationships**](#resource-relationships)
-    - [**Creation Policies**](#creation-policies)
+  - [Resources (required)](#resources-required)
+    - [Custom Resources](#custom-resources)
+    - [Resource Relationships](#resource-relationships)
+    - [Creation Policies](#creation-policies)
     - [Wait Conditions](#wait-conditions)
-  - [**Outputs**](#outputs)
+  - [Outputs](#outputs)
+- [Template Example](#template-example)
 - [Intrinsic function](#intrinsic-function)
-- [Stack updates ](#stack-updates-)
+- [Stack updates](#stack-updates)
     - [**Update Policies**](#update-policies)
 - [Large templates management](#large-templates-management)
 - [**Stack Policies**](#stack-policies)
 - [**AWS CloudFormation Helper Scripts**](#aws-cloudformation-helper-scripts)
-- [**StackSets**](#stacksets)
-    - [**Stack Instance**](#stack-instance)
-    - [**Permissions**](#permissions-1)
+- [StackSets](#stacksets)
+    - [Stack Instance](#stack-instance)
+    - [Permissions](#permissions-1)
 - [Service limits](#service-limits)
-- [**SAM**](#sam)
+- [SAM](#sam)
+- [Example of *template.yaml* file](#example-of-templateyaml-file)
+- [AWS SAM resource and property type](#aws-sam-resource-and-property-type)
 
 
 Provides a common language to describe an AWS infrastructure, creates and builds those described resources.
@@ -49,9 +48,9 @@ Provides a common language to describe an AWS infrastructure, creates and builds
 * The output of AWS CloudFormation is called a **stack**. A stack is a collection of AWS resources deployed together as a group.
 * To update a stack you can **create** a changeset, inspect the changes and then **run changeset**
 
-## CloudFormation **entities**
+## CloudFormation entities
 
-### **Stacks**
+### Stacks
 
 Represents **a collection of resources** to deploy and manage by AWS CloudFormation. \
 When you submit a template, the resources you configure are provisioned and then make up the stack itself.\
@@ -61,31 +60,30 @@ For example, if you remove an AWS::EC2::Instance resource from the template and 
 {: .box-note}
 If you **manually** update the resource outside of CloudFormation, the result will be **inconsistencies** between the state CloudFormation expects and the actual resource state. This can cause future stack operations to fail.
 
-### **Change Sets**
+### Change Sets
 
 Instead of submitting the update directly, you can generate a change set.\
 A _change set_ is a **description of the changes** that will occur to a stack submitting the template.\
 If the changes are acceptable, **the change set itself can execute on the stack** and implement the proposed modifications.&#x20;
 
-### **Permissions**
+### Permissions
 
-By **default** CloudFormation functions within the **context of the **_**IAM user**_** or **_**role**_** t**hat invoked a stack action. So, any action that CloudFormation performs **is done on your behalf**, with **your authorizations**.
+By **default** CloudFormation functions within the **context** of the **IAM user** or **role** that invoked a stack action.  
+So, any action that CloudFormation performs **is done on your behalf**, with **your authorizations**.
 
-You can provide a **service role** the stack uses for the create, update, or delete actions.\
-To create an CloudFormation service role, make sure that the role has a **trust policy** that allows `cloudformation.amazonaws.com` to assume the role.\
+You can provide a **service role** the stack uses for the create, update, or delete actions.  
+To create an CloudFormation service role, make sure that the role has a **trust policy** that allows `cloudformation.amazonaws.com` to assume the role.  
 As a user, your _IAM credentials_ will need to include the ability to pass the role to AWS CloudFormation, using the `iam:PassRole` permission.
 
-You can submit a template from a **local file** or via a URL that points to an object in **S3.**\
-****If you submit from a local file the template is uploaded on S3, so you need these permissions:\
+You can submit a template from a **local file** or via a URL that points to an object in **S3**.  
+If you submit from a local file the template is uploaded on S3, so you need these permissions:
 `- cloudformation:CreateUploadBucket`\
 `- s3:PutObject`\
 `- s3:ListBucket`\
 `- s3:GetObject`\
 `- s3:CreateBucket`
 
-****
-
-## **Template anatomy**
+## Template anatomy
 
 The high-level structure of a template is as follows:
 
@@ -103,20 +101,20 @@ The high-level structure of a template is as follows:
 }
 ```
 
-### **AWSTemplateFormatVersion**
+### AWSTemplateFormatVersion
 
 Template engine version, always "2010-09-09"
 
-### **Description**
+### Description
 
 Text description, max 1024 bytes
 
-### **Metadata**
+### Metadata
 
 Additional template info, also used by AWS itself.\
 You cannot update template metadata by itself, you must perform an update to one or more resources when you update the Metadata section.
 
-#### AWS::CloudFormation:Init
+**AWS::CloudFormation:Init**
 
 ```
 "Metadata" : {
@@ -136,17 +134,16 @@ You cannot update template metadata by itself, you must perform an update to one
 
 You can organize config keys into _**configSets**_, which allow you to call groups of configurations at different times during an instance’s setup process and change the order in which configurations are applied.
 
-#### AWS::CloudFormation::Interface
+**AWS::CloudFormation::Interface**
 
 This section details how to modify the **ordering and presentation** of parameters in the AWS CloudFormation console.\
 It is composed of two sections:
 
-* **ParameterGroups:** To organize sets of **parameters** into **logical groupings**, which are then separated by horizontal lines in the console.
-* **ParameterLabels:** To define **friendly names** for **parameters** in the console.&#x20;
+- **ParameterGroups:** To organize sets of **parameters** into **logical groupings**, which are then separated by horizontal lines in the console.
+- **ParameterLabels:** To define **friendly names** for **parameters** in the console.&#x20;
 
 
-
-#### AWS::CloudFormation::Designer
+**AWS::CloudFormation::Designer**
 
 Specifies the visual layout and representation of resources when you design templates in the AWS CloudFormation Designer.\
 It is not recommended to manually modify this section.
@@ -190,14 +187,14 @@ Supported **parameter types**:&#x20;
 
 If a parameter value is sensitive, you can add the _**NoEcho**_ property, so that the sensitive value will be used normally but will be displayed as asterisks (\*\*\*).
 
-#### Pseudoparameters (automatically defined by AWS)
+**Pseudoparameters (automatically defined by AWS)**
 
 The **AWS::Region** parameter, for example, resolves to the region code where the stack is being deployed (such as **us-east-1**).
 
 ### **Mappings**
 
-Lookup table for conditional values **** (only strings allowed).\
-A common example of mappings usage is to look up Amazon EC2 instance AMI IDs based on the region and architecture type. \
+Lookup table for conditional values (only strings allowed).  
+A common example of mappings usage is to look up Amazon EC2 instance AMI IDs based on the region and architecture type.  
 To query the values within the mapping you can use the **Fn::FindInMap** intrinsic function.
 
 ```
@@ -228,41 +225,38 @@ A common use case would be, for example, to conditionally set an EC2 instance to
 Set of macros you can use to reduce the amount of time spent in the authoring process.\
 Transforms are applied to the template during the _change set_ creation process.
 
-*   **WS::Include Transform**\
-    ****Acts as a tool to import template snippets from S3 buckets into the template being developed. When the template is evaluated, a change set is created, and the template snippet is copied from its location and is added to the overall template structure.\
-    You can use this transform anywhere in a template, except the _Parameters_ and _AWSTemplateFormatVersion_ sections. Nested transforms are not supported.
-
-    ```
-    {
-      "Transform" : {
-        "Name" : "AWS::Include",
-        "Parameters" : {
-          "Location" : "s3://MyAmazonS3BucketName/MyFileName.json"
-        }
-      }
+- **WS::Include Transform**  
+Acts as a tool to import template snippets from S3 buckets into the template being developed. When the template is evaluated, a change set is created, and the template snippet is copied from its location and is added to the overall template structure.  
+You can use this transform anywhere in a template, except the _Parameters_ and _AWSTemplateFormatVersion_ sections. Nested transforms are not supported.  
+```
+{
+  "Transform" : {
+    "Name" : "AWS::Include",
+    "Parameters" : {
+      "Location" : "s3://MyAmazonS3BucketName/MyFileName.json"
     }
-    ```
-*   **AWS::Serverless Transform**\
-    ****Can be used to convert AWS Serverless Application Model (AWS SAM) templates to valid AWS CloudFormation templates for deployment.\
-    AWS SAM uses an abbreviated template syntax to deploy serverless applications with Lambda,  API Gateway, and DynamoDB.
+  }
+}
+```
 
-    ```
-    Transform: AWS::Serverless-2016-10-31
-    Resources:
-      MyServerlessFunctionLogicalID:
-        Type: AWS::Serverless::Function
-        Properties:
-          Handler: index.handler
-          Runtime: nodejs4.3
-          CodeUri: 's3://testBucket/mySourceCode.zip'
-    ```
+- **AWS::Serverless Transform**  
+Can be used to convert AWS Serverless Application Model (AWS SAM) templates to valid AWS CloudFormation templates for deployment.  
+AWS SAM uses an abbreviated template syntax to deploy serverless applications with Lambda,  API Gateway, and DynamoDB.  
+```
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  MyServerlessFunctionLogicalID:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs4.3
+      CodeUri: 's3://testBucket/mySourceCode.zip'
+```
 
+### Resources (required)
 
-
-### **Resources (required)**
-
-What to create, with properties**.**\
-****A logical ID acts as the resource key, to be referenced in other parts of the template.
+What to create, with properties.  
+A logical ID acts as the resource key, to be referenced in other parts of the template.
 
 ```
 {
@@ -279,28 +273,27 @@ What to create, with properties**.**\
 
 Properties can be either **optional or required.**
 
-#### **Custom Resources**
+#### Custom Resources
 
 Sometimes custom provisioning logic is required**,** for example to manage managing **resources not currently supported** by AWS CloudFormation, interacting with **third-party tools**, or other situations where more complexity is involved in the provisioning process.
 
-Custom resource providers may be AWS Lambda functions or Amazon Simple Notification Service (Amazon SNS) topics.&#x20;
+Custom resource providers may be AWS Lambda functions or Amazon Simple Notification Service (Amazon SNS) topics.
 
-#### **Resource Relationships**
+#### Resource Relationships
 
 By default CloudFormation tracks most dependencies between resources.\
 There are, however, some exceptions, for example, an application server may not function properly until the backend database is up and running.\
 In this case, you can add a **DependsOn** attribute to your template to specify the order of creation.
 
-#### **Creation Policies**
+#### Creation Policies
 
 Instructs CloudFormation not to mark a resource as CREATE\_COMPLETE until the resource itself signals back to the service. You can configure the creation policy to require a specific number of signals in a certain amount of time; otherwise, the resource will show CREATE\_FAILED.
 
 #### Wait Conditions
 
-You can use the WaitCondition property to insert **arbitrary pauses until resources complete**.\
+You can use the WaitCondition property to insert **arbitrary pauses until resources complete**.
 
-
-### **Outputs**
+### Outputs
 
 Values to be returned to the users
 
@@ -313,15 +306,15 @@ Values to be returned to the users
 }
 ```
 
-<details>
 
-<summary><strong>Template</strong> Example - DynamoDB table</summary>
 
+## Template Example
+This is a complete example of a template, for a DynamoDB table
 ```json
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
  
-  "Description" : "AWS CloudFormation Sample Template DynamoDB_Table: This template demonstrates the creation of a DynamoDB table.  **WARNING** This template creates an Amazon DynamoDB table. You will be billed for the AWS resources used if you create a stack from this template.",
+  "Description" : "AWS CloudFormation Sample Template DynamoDB_Table: This template demonstrates the creation of a DynamoDB table.",
  
   "Parameters" : {
     "HashKeyElementName" : {
@@ -391,65 +384,65 @@ Values to be returned to the users
 s
 ```
 
-</details>
-
 ## Intrinsic function
 
-* **Fn::Base64** \
-  ****Converts a string into its Base64 equivalent.\
-  The primary purpose is to pass string instructions to an EC2 instance’s UserData property.\
-  { "Fn::Base64": valueToEncode }
-* **Fn::Cidr** \
-  ****Allows you to convert an IP address block, subnet count, and size mask (optional) into a valid CIDR notation.\
-  { "Fn::Cidr": \[ ipBlock, count, sizeMask ] }
-*   **Fn::FindInMap**
+- **Fn::Base64**  
+Converts a string into its Base64 equivalent.  
+The primary purpose is to pass string instructions to an EC2 instance’s UserData property.  
+`{ "Fn::Base64": valueToEncode }`
 
-    Query information stored in the mapping table.\
-    { "Fn::FindInMap": \[ "MapName", "TopLevelKey", "SecondLevelKey" ] }
-*   **Fn::GetAtt**
+- **Fn::Cidr**  
+Allows you to convert an IP address block, subnet count, and size mask (optional) into a valid CIDR notation.  
+`{ "Fn::Cidr": \[ ipBlock, count, sizeMask ] }`
 
-    Used to get information from a created resource to be used in other parts of the same template. For example, to get the ARN.\
-    { "Fn::GetAtt" : \[ "logicalIDOfResource", "attributeName" ] }
-*   **Fn::GetAZs**
+- **Fn::FindInMap**  
+Query information stored in the mapping table.  
+`{ "Fn::FindInMap": \[ "MapName", "TopLevelKey", "SecondLevelKey" ] }`
 
-    Returns a list of availability zones in the region in which the stack is being created.\
-    { "Fn::GetAZs" : "region" }
-*   &#x20;**Fn::ImportValue**\
-    ****Returns the value of an output exported by another stack.\
-    You typically use this function to&#x20;
+- **Fn::GetAtt**  
+Used to get information from a created resource to be used in other parts of the same template. For example, to get the ARN.  
+`{ "Fn::GetAtt" : \[ "logicalIDOfResource", "attributeName" ] }`
 
-    { "Fn::ImportValue" : sharedValueToImport }
-*   **Fn::Join**
+- **Fn::GetAZs**  
+Returns a list of availability zones in the region in which the stack is being created.  
+`{ "Fn::GetAZs" : "region" }`
 
-    Join string values with a predefined delimiter, which you supply to the function along with a list of strings to join.
+- **Fn::ImportValue**  
+Returns the value of an output exported by another stack.  
+`{ "Fn::ImportValue" : sharedValueToImport }`
 
-    { "Fn::Join" : \[ "delimiter", \[ listOfvalues] ] }
-*   **Fn::Select**
+- **Fn::Join**  
+Join string values with a predefined delimiter, which you supply to the function along with a list of strings to join.  
+`{ "Fn::Join" : \[ "delimiter", \[ listOfvalues] ] }`
 
-    Choose an item in a list based on the zero-based index (out of bounds equals null)\
-    { "Fn::Select" : \[ index, \[listOfObjects] ] }
-*   **Fn::Split**
+- **Fn::Select**  
+Choose an item in a list based on the zero-based index (out of bounds equals null)  
+`{ "Fn::Select" : \[ index, \[listOfObjects] ] }`
 
-    Create a list of strings by separating a single string by a known delimiter.\
-    { "Fn::Split" : \[ "delimiter", "source string" ] }
-* **Fn::Sub**\
-  ****Substitutes variables in the format _${MyVarName}_ with values that you specify.\
-  { "Fn::Sub" : \[ String, { Var1Name: Var1Value, Var2Name: Var2Value } ] }
-* **Ref**\
-  ****Returns the value of the specified _parameter_ or _resource_.\
-  With resources, will return the _name_, the _ARN_ or _physical ID_, depending on the resource type.\
-  { "Ref" : "logicalName" }
-* **Condition Functions:**\
-  **Fn::And**\
-  **Fn::Equals**\
-  **Fn::If**\
-  **Fn::Not**\
-  **Fn::Or**\
-  ****
+- **Fn::Split**  
+Create a list of strings by separating a single string by a known delimiter.  
+`{ "Fn::Split" : \[ "delimiter", "source string" ] }`
+
+- **Fn::Sub**  
+Substitutes variables in the format _${MyVarName}_ with values that you specify.  
+`{ "Fn::Sub" : \[ String, { Var1Name: Var1Value, Var2Name: Var2Value } ] }`
+
+- **Ref**  
+Returns the value of the specified _parameter_ or _resource_.  
+With resources, will return the _name_, the _ARN_ or _physical ID_, depending on the resource type.  
+`{ "Ref" : "logicalName" }`
+
+- **Condition Functions:**
+  - **Fn::And**
+  - **Fn::Equals**
+  - **Fn::If**
+  - **Fn::Not**
+  - **Fn::Or**
 
 
 
-## Stack updates&#x20;
+
+## Stack updates
 
 #### **Update Policies**
 
@@ -493,28 +486,31 @@ Stack policies are **not a replacement for appropriate access control** from an 
 
 When you execute custom scripts on EC2 instances as part of your _UserData_, CloudFormation provides several important helper scripts, located in `/opt/aws/bin`.
 
-* **cfn-init**\
-  ****can be used to read **init metadata** from inside the resource created (packages, users, groups...) for example inside an injected _UserData_
-* **cfn-signal**\
-  ****can be used to notify that the instance has completed its configuration, when using a _CreationPolicy_ or a _WaitCondition_
-* **cfn-get-metadata**\
-  ****to get arbitrary metadata, supports only top-level keys
-* **cfn-hup**\
-  ****is a daemon that detects changes in resource metadata and runs user-specified actions when a change is detected
+- **cfn-init**  
+can be used to read **init metadata** from inside the resource created (packages, users, groups...) for example inside an injected _UserData_
 
-## **StackSets**
+- **cfn-signal**  
+can be used to notify that the instance has completed its configuration, when using a _CreationPolicy_ or a _WaitCondition_
+
+- **cfn-get-metadata**  
+to get arbitrary metadata, supports only top-level keys
+
+- **cfn-hup**  
+is a daemon that detects changes in resource metadata and runs user-specified actions when a change is detected
+
+## StackSets
 
 CloudFormation _StackSets_ gives users the ability to control, provision, and manage multiple **stacks across multiple accounts.**\
 **Each stack** set contains information about the stacks you deploy to a **single target account** in **one or more regions**. You can configure stack sets to deploy to regions in a specific order and how many unsuccessful deployments are required to fail the entire deployment.
 
 The stack set itself exists in one region, and you must manage it there.
 
-#### **Stack Instance**
+#### Stack Instance
 
-For every _**account+region**_** pair** you need a _Stack Instance_.\
+For every **account+region pair** you need a _Stack Instance_.  
 An update to a stack set propagates to all stack instances in all accounts and regions.
 
-#### **Permissions**
+#### Permissions
 
 For an _administrator account_ to deploy to any _target accounts_, you must create a **trust relationship** between the accounts.\
 To do this, you create **an IAM role in each account**.
@@ -533,9 +529,9 @@ This execution role will require CloudFormation permissions and permissions to m
 | **Parameters** per template |                         60                        |
 | **Resources** per template  |                        200                        |
 | **Stacks** per account      |                        200                        |
-| Template body **size**      | <p>51,200 B (local file)</p><p>460,800 B (S3)</p> |
+| Template body **size**      | 51,200 Bytes (local file) / 460,800 Bytes (S3)    |
 
-## **SAM**
+## SAM
 
 It's a CloudFormation extension, optimized for serverless.\
 Every _SAM template_ is "transformed" into a _CloudFormation template_
@@ -545,9 +541,7 @@ Every _SAM template_ is "transformed" into a _CloudFormation template_
 * Can **mix** other **non-SAM** CloudFormation resources in the same template
 * Supports intrinsic functions (i.e., Ref, Sub, Join, Select, Split)
 
-<details>
-
-<summary>Example of <em>template.yaml</em> file</summary>
+## Example of *template.yaml* file
 
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09’
@@ -570,16 +564,17 @@ Resources:
         Type: AWS::Serverless::SimpleTable
 ```
 
-</details>
+## AWS SAM resource and property type
 
-|                               |                                                  |
+
 | ----------------------------- | ------------------------------------------------ |
 | AWS::Serverless::Api          | API Gateway (OpenAPI)                            |
 | AWS::Serverless::Application  | Cloudformation stack                             |
 | AWS::Serverless::Connector    | Lambda to DynamoDB, SNS, ....                    |
 | AWS::Serverless::Function     | Lambda+IAM                                       |
+| AWS::Serverless::GraphQLApi   | AWS AppSync GraphQL API                          |
 | AWS::Serverless::HttpApi      | API Gateway hhtp api                             |
 | AWS::Serverless::LayerVersion | layer library for a lambda                       |
 | AWS::Serverless::SimpleTable  | dynamodb table with single attribute primary key |
 | AWS::Serverless::StateMachine | Step function                                    |
-|                               |                                                  |
+

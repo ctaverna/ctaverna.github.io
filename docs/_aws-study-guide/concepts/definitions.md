@@ -3,7 +3,7 @@ title: "Definitions"
 subtitle: "General concepts for cloud computing"
 is-folder: false
 subcategory: "concepts"
-sequence: 2
+sequence: 1
 layout: aws_study_guide_page
 ---
 
@@ -21,32 +21,32 @@ layout: aws_study_guide_page
 - [Auto scaling](#auto-scaling)
 - [Infrastructure as Code (IaC)](#infrastructure-as-code-iac)
 - [Continuous integration (CI)](#continuous-integration-ci)
-- [**Continuous delivery (CD)** ](#continuous-delivery-cd-)
+- [Continuous delivery (CD)](#continuous-delivery-cd)
 
 
 ## Scalability
 
-A measurement of a system's **ability to grow** to accommodate an increase in demand.\
-Both horizontally and vertically.\
-<mark style="color:red;">**Not**</mark> necessarily automatically.
+A measurement of a system's **ability to grow** to accommodate an increase in demand.  
+Both horizontally and vertically.  
+**Not** necessarily automatically.
 
 ## Elasticity
 
-The ability to **acquire resources** as you need them **and release resources** when you no longer need them.\
-Both horizontally and vertically.\
-<mark style="color:red;">**Automatically**</mark>**.**
+The ability to **acquire resources** as you need them **and release resources** when you no longer need them.  
+Both horizontally and vertically.  
+**Automatically**.
 
 {: .box-warning}
 An _elastic_ resource is _also scalable_, the opposite is not always true.
 
 ## High availability
 
-The system will **continue to function** despite the complete failure of any component of the architecture\
+The system will **continue to function** despite the complete failure of any component of the architecture.
 _NAT GW, Elastricache, Redshift, RDS multiaz..._
 
 ## Fault tolerance
 
-The system will **continue to function** **without degradation in performance** despite the complete failure of any component of the architecture\
+The system will **continue to function** **without degradation in performance** despite the complete failure of any component of the architecture.
 _S3, DynamoDB, API GW, Cloudfront, Route53..._
 
 ## Resiliency
@@ -59,11 +59,9 @@ The ability of a system to **remain functional** when faced with the challenges 
 
 ## Availability
 
-The **percentage of time** that a workload is **available for use**, where "available for use" means that it performs its agreed function when required.
-
-It is a commonly used metric to quantitatively measure reliability.
-
-Determined by percentage uptime, expressed in 9s
+The **percentage of time** that a workload is **available for use**, where "available for use" means that it performs its agreed function when required.  
+It is a commonly used metric to quantitatively measure reliability.  
+Determined by percentage uptime, expressed in 9s.
 
 ## Reliability
 
@@ -79,10 +77,10 @@ A measurement of the amount of time between an action and the result, often betw
 
 ## Auto scaling
 
-* **Unmanaged services** _(EC2, RDS...)_\
-  ****When new resources are added, minimum reaction time is **a few minutes.**
-* **Managed services** _(APIGW, S3, ALB, Lambda, ECS, DynamoDB...)_\
-  __Can scale **instantly,** or at least **very fast**.
+- **Unmanaged services** *(EC2, RDS...)*  
+When new resources are added, minimum reaction time is **a few minutes.**
+- **Managed services** *(APIGW, S3, ALB, Lambda, ECS, DynamoDB...)*  
+Can scale **instantly,** or at least **very fast**.
 
 **Predictive scaling** is based on ML and can be a good solution to scale faster
 
@@ -97,10 +95,10 @@ A measurement of the amount of time between an action and the result, often betw
 
 ## Continuous integration (CI)
 
-The software development practice in which you continuously **integrate** (or check in) **all code changes into a main branch** of a central repository. \
+The software development practice in which you continuously **integrate** (or check in) **all code changes into a main branch** of a central repository.  
 This practice enables you to **verify your code changes early** and often with an automated build and test process.
 
-## **Continuous delivery (CD)**&#x20;
+## Continuous delivery (CD)
 
 The software development practice in which **all code changes** are **automatically** prepared and always **deployable** (ready to go into production) at a single step.
 

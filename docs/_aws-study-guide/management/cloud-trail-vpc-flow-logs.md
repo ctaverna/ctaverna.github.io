@@ -10,7 +10,6 @@ layout: aws_study_guide_page
 {: .toc .toc-title}
 - [AWS CloudTrail](#aws-cloudtrail)
     - [Commands](#commands)
-    - [Commands](#commands-1)
     - [JSON metric filter examples](#json-metric-filter-examples)
 - [VPC Flow Logs](#vpc-flow-logs)
 
@@ -27,10 +26,6 @@ You can turn on CloudTrail on a per-region basis.
 * delete-trail
 * start-log / stop-log
 
-#### Commands
-
-`create-trail / delete-trail`
-
 #### JSON metric filter examples
 
 * {($.event\_Name=ConsoleLogin) && ($.responseElements.ConsoleLogin="Failure") }\
@@ -44,8 +39,9 @@ Captures traffic flow details in your VPC
 
 * Accepted, rejected or ALL traffic
 * Can be enabled for VPCs, subnets and ENIs
-* Logs published to CloudWatch logs
-* Logs published to S3
+* Logs published to 
+  * CloudWatch
+  * S3
 * Use cases:
   * Troubleshoot connectivity issues
   * Test network access rules

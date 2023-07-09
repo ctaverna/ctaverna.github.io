@@ -3,7 +3,7 @@ title: "The AWS infrastructure"
 subtitle: "An overview of the AWS infrastructure"
 is-folder: false
 subcategory: "concepts"
-sequence: 1
+sequence: 2
 layout: aws_study_guide_page
 ---
 

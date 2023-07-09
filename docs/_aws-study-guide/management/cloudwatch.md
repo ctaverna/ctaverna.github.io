@@ -54,9 +54,9 @@ CloudWatch is a robust monitoring solution for AWS resources.
 * **Evaluation period**\
   number of data points to evaluate (ie 10)
 * **Datapoints to alarm**\
-  ****how many datapoints within evaluation period must be breaching to cause alarm state (ie 5)
+  how many datapoints within evaluation period must be breaching to cause alarm state (ie 5)
 * **Evaluation range**\
-  ****how many datapoints retrieved by CloudWatch for alarm evaluation (greater than evaluation period)
+  how many datapoints retrieved by CloudWatch for alarm evaluation (greater than evaluation period)
 
 Every datapoint can be **NotBreaching**, **Breaching** or **Missing.**
 
@@ -115,5 +115,5 @@ Can be used to analyze your logs in seconds, with fast and interactive queries a
 
 ### CloudWatch Agent
 
-Can be installed on EC2 to collect custom metrics (can be also installed via [SSM](cloudformation-and-sam.md#aws-systems-manager))
+Can be installed on EC2 to collect custom metrics (can be also installed via **SSM**)
 

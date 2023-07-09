@@ -11,12 +11,12 @@ layout: aws_study_guide_page
 - [AWS Secrets Manager (ASM)](#aws-secrets-manager-asm)
 - [Key Management Service (KMS)](#key-management-service-kms)
   - [**Keys**](#keys)
-    - [**CMK**](#cmk)
+    - [CMK](#cmk)
     - [Data Keys](#data-keys)
   - [Controlling the Access Keys](#controlling-the-access-keys)
-    - [Option 1: You Control the Encryption Method and the Entire KMI](#option-1-you-control-the-encryption-method-and-the-entire-kmi)
-    - [Option 2: You Control the Encryption Method AWS provides the KMI Storage Component, and You Provide the KMI Management Layer](#option-2-you-control-the-encryption-method-aws-provides-the-kmi-storage-component-and-you-provide-the-kmi-management-layer)
-    - [Option 3: AWS Controls the Encryption Method and the Entire KMI ](#option-3-aws-controls-the-encryption-method-and-the-entire-kmi-)
+    - [Option 1](#option-1)
+    - [Option 2](#option-2)
+    - [Option 3](#option-3)
 - [CloudHSM](#cloudhsm)
 
 ## AWS Secrets Manager (ASM)
@@ -44,7 +44,7 @@ Use Cases:
 
 CMKs can never leave AWS KMS unencrypted, but data keys can.
 
-#### **CMK**
+#### CMK
 
 AWS KMS uses a type of key called a **customer master key (CMK)** to encrypt and decrypt data.\
 CMKs are the fundamental resources that AWS KMS manages.\
@@ -55,7 +55,6 @@ They can be used inside AWS KMS to encrypt or decrypt up to 4 kilobytes of data 
 
 CMK can also be used to encrypt generated **data keys**, which are then used to encrypt or decrypt larger amounts of data outside of the service.\
 
-
 ### Controlling the Access Keys
 
 A key management infrastructure (KMI) is composed of two subcomponents:
@@ -63,7 +62,8 @@ A key management infrastructure (KMI) is composed of two subcomponents:
 * **the storage layer** that protects the plaintext keys
 * **the management layer** that authorizes key use
 
-#### Option 1: You Control the Encryption Method and the Entire KMI
+#### Option 1
+- **You Control the Encryption Method and the Entire KMI**
 
 You are responsible of everything.
 
@@ -71,7 +71,7 @@ You are responsible of everything.
   You can encrypt data by using any encryption method you want and then upload the encrypted data using the Amazon Simple Storage Service (Amazon S3) API. An alternative to these open source encryption tools with the Amazon **S3 encryption client**, which is an open source set of APIs embedded in the AWS SDKs. Supply a key from your KMI that can be used to encrypt or decrypt your data as part of the call to Amazon S3.
 * **EBS -** Only data volumes, not boot volumes
   * **System level** or **block-level** encryption\
-    ****Operates below the file system layer using kernel space device drivers to perform the encryption and decryption of data. Useful when you want **all data written to a volume to be encrypted** regardless of what directory the data is stored in. (eg: Loop-AES, dm-crypt, TrueCrypt)
+    Operates below the file system layer using kernel space device drivers to perform the encryption and decryption of data. Useful when you want **all data written to a volume to be encrypted** regardless of what directory the data is stored in. (eg: Loop-AES, dm-crypt, TrueCrypt)
   * **File-system** encryption\
     You can use file system-level encryption, which works by stacking an encrypted file system on top of an existing file system. This method is typically used to encrypt a specific directory. (eg: eCryptfsand EncFs)
   *   **Amazon Relational Database Service**\
@@ -79,24 +79,29 @@ You are responsible of everything.
 
       The encrypted fields of the returned results can be decrypted by your local application for presentation.
 
-#### Option 2: You Control the Encryption Method AWS provides the KMI Storage Component, and You Provide the KMI Management Layer
+#### Option 2
+- **You Control the Encryption Method** 
+- **AWS provides the KMI Storage Component**
+- **You Provide the KMI Management Layer**
 
 Similar to option 1, but the keys are stored in an AWS CloudHSM appliance rather than in a key storage system that you manage on-premises.
 
-#### Option 3: AWS Controls the Encryption Method and the Entire KMI&#x20;
+#### Option 3
+- **AWS Controls the Encryption Method and the Entire KMI**
 
 AWS provides server-side encryption of your data, transparently managing the encryption method and keys.
 
-* **S3** - There are 3 ways:
-  * **Server-side encryption:** Each object is encrypted with a unique data key. As an additional safeguard, this key is encrypted with a periodically rotated master key managed by Amazon S3. Amazon S3 server-side encryption uses 256-bit Advanced Encryption Standard (AES) keys for both object and master keys.\
-    No additional cost beyond what you pay for using Amazon S3.
-  * **Server-side encryption using customer-provided keys:** After the object is encrypted, the encryption key is deleted. When you retrieve this object from Amazon S3, you must provide the same encryption key in your request. Amazon S3 verifies that the encryption key matches, decrypts the object, and returns the object to you.\
-    No additional cost beyond what you pay for using Amazon S3.
-  *   **Server-side encryption using AWS KMS:** You can encrypt your data in Amazon S3 by defining a _KMS master key_ within your account. This master key is used to encrypt the unique _object key_ (referred to as a _data key_) that ultimately encrypts your object.\
+- **S3** - There are 3 ways:
+  - **Server-side encryption:** Each object is encrypted with a unique data key. As an additional safeguard, this key is encrypted with a periodically rotated master key managed by Amazon S3. Amazon S3 server-side encryption uses 256-bit Advanced Encryption Standard (AES) keys for both object and master keys.\
+  No additional cost beyond what you pay for using Amazon S3.
+
+  - **Server-side encryption using customer-provided keys:** After the object is encrypted, the encryption key is deleted. When you retrieve this object from Amazon S3, you must provide the same encryption key in your request. Amazon S3 verifies that the encryption key matches, decrypts the object, and returns the object to you.\
+  No additional cost beyond what you pay for using Amazon S3.
+
+  - **Server-side encryption using AWS KMS:** You can encrypt your data in Amazon S3 by defining a _KMS master key_ within your account. This master key is used to encrypt the unique _object key_ (referred to as a _data key_) that ultimately encrypts your object.\
       When you upload your object:\
       \- A request is sent to KMS to create an object key.\
       \- KMS generates this object key and encrypts it using the master key
-
       \- KMS returns this encrypted object key along with the plaintext object key to S3\
       \- S3 web server encrypts your object using the plaintext object key, stores the now encrypted object (with the encrypted object key), and deletes the plaintext object key from memory.\
       To retrieve this encrypted object\
@@ -104,17 +109,17 @@ AWS provides server-side encryption of your data, transparently managing the enc
       \- KMS decrypts the object key using the correct master key and returns the decrypted (plaintext) object key to Amazon S3.\
       \- With the plaintext object key, Amazon S3 decrypts the encrypted object and returns it to you.\
       Amazon S3 also enables you to define a default encryption policy. You can specify that all objects are encrypted when stored. You can also define a bucket policy that rejects uploads of unencrypted objects.
-* **EBS**\
+- **EBS**\
   When creating a volume you can choose to encrypt it using a KMS _**master key**_ within your account that encrypts the unique _**volume key**_ that will ultimately encrypt your EBS volume.\
   The plaintext _volume key_ is stored in memory to encrypt and decrypt all data going to and from your attached EBS volume. When the encrypted volume (or any encrypted snapshots derived from that volume) needs to be re-attached to an instance, a call is made to KMS to decrypt the encrypted _volume key_. KMS decrypts this encrypted _volume key_ with the correct _master key_ and returns the decrypted _volume key_ to Amazon EC2.
-* **Amazon EMR**\
+- **Amazon EMR**\
   S3DistCp is an Amazon EMR feature that moves large amounts of data from Amazon S3 into HDFS, from HDFS to Amazon S3, and between Amazon S3 buckets. With S3DistCp, you can request Amazon S3 to use server-side encryption when it writes Amazon EMR data to an Amazon S3 bucket.
-* **Amazon Redshift**\
-  ****When creating an Amazon Redshift cluster, you can choose to encrypt all data in user-created tables. For server-side encryption of an Amazon Redshift cluster, you can choose from the following options:
-  * **256-bit AES keys** Data blocks (included backups) are encrypted using random 256-bit AES keys, themselves encrypted using a random 256-bit AES database key, which is encrypted by a 256-bit AES cluster master key that is unique to your cluster.
-  * **CloudHSM cluster master key** The 256-bit AES cluster master key used to encrypt your database keys is generated in your CloudHSM.\
+- **Amazon Redshift**\
+  When creating an Amazon Redshift cluster, you can choose to encrypt all data in user-created tables. For server-side encryption of an Amazon Redshift cluster, you can choose from the following options:
+  - **256-bit AES keys** Data blocks (included backups) are encrypted using random 256-bit AES keys, themselves encrypted using a random 256-bit AES database key, which is encrypted by a 256-bit AES cluster master key that is unique to your cluster.
+  - **CloudHSM cluster master key** The 256-bit AES cluster master key used to encrypt your database keys is generated in your CloudHSM.\
     This option lets you **more tightly control the hierarchy and lifecycle** of the keys used to encrypt your data.
-  * **AWS KMS cluster master key** The 256-bit AES cluster master key used to encrypt your database keys is generated in AWS KMS. This cluster master key is then encrypted by a master key within AWS KMS.\
+  - **AWS KMS cluster master key** The 256-bit AES cluster master key used to encrypt your database keys is generated in AWS KMS. This cluster master key is then encrypted by a master key within AWS KMS.\
     This option lets you define **fine-grained controls over the access and use** of your master keys and audit these controls through AWS CloudTrail.
 
 ## CloudHSM

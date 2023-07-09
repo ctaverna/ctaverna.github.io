@@ -2,7 +2,7 @@
 title: "Security, Identity and compliance"
 is-folder: true
 subcategory: security-identity-compliance
-sequence: 5
+sequence: 3
 layout: aws_study_guide_page
 permalink: /aws-study-guide/security-identity-compliance
 ---

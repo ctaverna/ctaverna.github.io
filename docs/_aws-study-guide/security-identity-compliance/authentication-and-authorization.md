@@ -14,15 +14,15 @@ layout: aws_study_guide_page
 - [Federation](#federation)
   - [Custom Build](#custom-build)
   - [Cross-Account Access](#cross-account-access)
-  - [**Security Assertion Markup Language** (SAML)](#security-assertion-markup-language-saml)
-  - [**OpenID Connect**](#openid-connect)
+  - [Security Assertion Markup Language *(SAML)*](#security-assertion-markup-language-saml)
+  - [OpenID Connect](#openid-connect)
   - [Microsoft Active Directory](#microsoft-active-directory)
-- [**AWS Single Sign-On**](#aws-single-sign-on)
+- [AWS Single Sign-On](#aws-single-sign-on)
 - [AWS Security Token Service (STS)](#aws-security-token-service-sts)
     - [STS supported APIs](#sts-supported-apis)
-- [**Active Directory Connector**](#active-directory-connector)
-- [**Simple Active Directory**](#simple-active-directory)
-- [**AWS Managed Microsoft AD**](#aws-managed-microsoft-ad)
+- [Active Directory Connector](#active-directory-connector)
+- [Simple Active Directory](#simple-active-directory)
+- [AWS Managed Microsoft AD](#aws-managed-microsoft-ad)
 
 
 ## **General concepts**
@@ -65,10 +65,10 @@ The **authorization** is established by applying policies on user-executed APIs.
 
 A federation consists of two components: _identity provider_ and _identity consumer._
 
-* **Identity provider**\
-  ****Stores **identities**, provides a mechanism for **authentication**, and provides a **course level of authorization**.
-* **Identity consumer**\
-  ****Stores a **reference to the identity**, providing **authorization at a greater granularity** than the identity provider.
+- **Identity provider**  
+Stores **identities**, provides a mechanism for **authentication**, and provides a **course level of authorization**.
+- **Identity consumer**  
+Stores a **reference to the identity**, providing **authorization at a greater granularity** than the identity provider.
 
 ### Custom Build
 
@@ -78,30 +78,30 @@ _Custom builds_ were the original method of federation within AWS, but they have
 
 You can enable users to access resources across multiple AWS accounts, by using only one set of credentials.
 
-* **source account:** __ the account in which the user resides
-* **target account:** __ the account with the resources to which the user wants access
+* **source account:**  the account in which the user resides
+* **target account:**  the account with the resources to which the user wants access
   * Here must exist an _IAM role_ with:
     * _permissions policy:_ grant access to AWS services and resources
     * _trust policy:_ who can assume the role and their external ID
 
 The _target account_ issues short-term credentials to the _role_, which allows access to AWS services and the resources specified.
 
-### **Security Assertion Markup Language** (SAML)
+### Security Assertion Markup Language *(SAML)*
 
 Provides **federation** between an **IdP** and a **service provider (SP).**\
-****The IdP and the SP exchange metadata in an **XML** file that contains **certificates** and **attributes.**
+The IdP and the SP exchange metadata in an **XML** file that contains **certificates** and **attributes.**
 
 **You interact only with the IdP**, and all authentication and authorization occurs between you and the IdP. &#x20;
 
 After a previously **established trust relationship** and a **successful authentication and authorization**:
 
-* &#x20;The _**IdP**_ makes an **assertion** to the service provider.
+* The _**IdP**_ makes an **assertion** to the service provider.
 * The _**service provider**_ accepts this assertion and **provides access**.
 
-### **OpenID Connect**
+### OpenID Connect
 
-It's the **successor to SAML.**\
-****OIDC is easier to configure than SAML and **uses tokens rather than assertions** to provide access. Most use cases for OIDC involve external versus internal users.
+It's the **successor to SAML.**  
+OIDC is easier to configure than SAML and **uses tokens rather than assertions** to provide access. Most use cases for OIDC involve external versus internal users.
 
 With OIDC, _OpenID provider_ (OP) uses a _relying party_ (RP) trust to track the service provider.\
 OP and RP exchange metadata by focusing on the OP providing information to the RP about the location of its endpoints.\
@@ -121,7 +121,7 @@ Companies such as Google, Twitter, Facebook, and Amazon can also establish their
 ### Microsoft Active Directory
 
 Identity provider for a majority of corporations.\
-You use the _Active Directory **forest trusts**_** ** to establish trust between an _**AD domain controller** _ and _AWS Directory Service for Microsoft Active Directory (**AWS Managed Microsoft AD**)_.
+You use the _Active Directory **forest trusts**_ to establish trust between an _**AD domain controller** _ and _AWS Directory Service for Microsoft Active Directory (**AWS Managed Microsoft AD**)_.
 
 For Microsoft Active Directory, the domain controller is on-premises or in the AWS Cloud.
 
@@ -129,7 +129,7 @@ In the Microsoft Active Directory setup, the **AD domain controller** defines **
 However, you add users to the **groups** that you define in the **AWS Managed Microsoft AD**.\
 Access to services depends on membership within these groups.
 
-## **AWS Single Sign-On**
+## AWS Single Sign-On
 
 It's an AWS service that manages SSO access.\
 AWS SSO allows users to **sign in** to a user portal **with** their existing **corporate credentials** and **access** both **AWS accounts** and business accounts.\
@@ -149,15 +149,15 @@ Temporary security credentials work similarly to long-term access key credential
 #### STS supported APIs
 
 * **AssumeRole**\
-  ****Provides a set of _temporary security credentials_ to access AWS resources.\
+  Provides a set of _temporary security credentials_ to access AWS resources.\
   \- Can be used to **grant access** to **IAM users** defined in **other AWS accounts**.\
   \- Supports multi-factor authentication (MFA).\
   \- Default and minimum duration of the credentials is **60 minutes** (can be extended 12 hours)
 * **AssumeRoleWithSAML**\
-  ****Same as _AssumeRole_, to be used when you are using an identity store or directory that is SAML-based, rather than having an identity from an IAM user in another AWS account.\
+  Same as _AssumeRole_, to be used when you are using an identity store or directory that is SAML-based, rather than having an identity from an IAM user in another AWS account.\
   This API does not support MFA.
 * **DecodeAuthorizationMessage**\
-  ****Decodes additional information about the **authorization status of a request** from an encoded message **returned in response** to an AWS request.\
+  Decodes additional information about the **authorization status of a request** from an encoded message **returned in response** to an AWS request.\
   The message is encoded to prevent the requesting user from seeing details of the authorization status, which can contain privileged information.\
   The decoded message includes the following:\
   \- Whether the request was denied for an explicit deny or for absence of an explicit allow\
@@ -166,20 +166,20 @@ Temporary security credentials work similarly to long-term access key credential
   \- Requested resource\
   \- Values of condition keys in the context of the user’s request
 * **GetCallerIdentity**\
-  ****Returns details about the IAM identity whose credentials call the API.
+  Returns details about the IAM identity whose credentials call the API.
 * **GetFederationToken**\
-  ****Provides a set of temporary security credentials to access AWS resources **for a federated user**.\
+  Provides a set of temporary security credentials to access AWS resources **for a federated user**.\
   Because the call uses the long-term security credentials of an IAM user, this call is appropriate in contexts where credentials can be safely stored.\
-  In addition to the policies attached to the IAM user, **additional **_**policies**_ can be passed **as a parameter**, and the most restrictive is the one enforced.\
+  In addition to the policies attached to the IAM user, **additional _policies_** can be passed **as a parameter**, and the most restrictive is the one enforced.\
   The API credentials can have a duration of up to 36 hours.\
   This API does not support MFA.
-*   **GetSessionToken**\
-    ****Provides a set of temporary security credentials to access AWS resources.\
-    Normally used to enable **MFA** to protect programmatic calls to specific AWS APIs.
+* **GetSessionToken**\
+  Provides a set of temporary security credentials to access AWS resources.\
+  Normally used to enable **MFA** to protect programmatic calls to specific AWS APIs.
 
 
 
-## **Active Directory Connector**
+## Active Directory Connector
 
 **Connects** your existing **on-premises** Microsoft Active Directory with compatible AWS applications.
 
@@ -191,7 +191,7 @@ Acting as a **proxy service**, you can add a service account to your Active Dire
 When you add users to AWS applications, AD Connector reads your existing Active Directory to create lists of users and groups from which to select.\
 When users sign in to the AWS applications, AD Connector forwards sign-in requests to your on-premises Active Directory domain controllers for authentication.
 
-## **Simple Active Directory**
+## Simple Active Directory
 
 It's a Microsoft Active Directory that is compatible with AWS Directory Service and is powered by Samba 4.
 
@@ -202,18 +202,12 @@ Supports **basic** Active Directory **features** such as user accounts, group me
 However, Simple AD **does not support** many features like: trust relationships, DNS dynamic update, schema extensions, MFA, communication over LDAPs, PowerShell Active Directory cmdlets, or Flexible Single Master Operation (FSMO) role transfer.\
 In addition, Simple AD is not compatible with RDS SQL Server.
 
-## **AWS Managed Microsoft AD**
+## AWS Managed Microsoft AD
 
 Its an **actual** Microsoft Windows Server Active Directory, managed by AWS in the AWS Cloud.\
 It enables you to migrate a broad range of Active Directory–aware applications to the AWS Cloud.
 
 AWS Managed Microsoft AD works with Microsoft SharePoint, Microsoft SQL Server Always-On Availability Groups, and many .NET applications.
-
-****
-
-\
-\
-
 
 
 

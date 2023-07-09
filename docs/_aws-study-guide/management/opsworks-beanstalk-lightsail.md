@@ -1,6 +1,6 @@
 ---
 title: "OpsWorks, Beanstalk, Lightsail"
-subtitle: "...WIP..."
+subtitle: "Running application stacks"
 is-folder: false
 subcategory: "management"
 sequence: 3
@@ -10,14 +10,14 @@ layout: aws_study_guide_page
 {: .toc .toc-title}
 - [OpsWorks](#opsworks)
 - [Elastic Beanstalk](#elastic-beanstalk)
-  - [CLI](#cli)
-  - [**Concepts**](#concepts)
+  - [BeansTalk CLI](#beanstalk-cli)
+  - [Concepts](#concepts)
   - [Deployments](#deployments)
     - [All-at-Once deployments](#all-at-once-deployments)
-    - [ In-Place deployments](#-in-place-deployments)
-    - [Rolling deployments ](#rolling-deployments-)
+    - [In-Place deployments](#in-place-deployments)
+    - [Rolling deployments](#rolling-deployments)
     - [**Blue/Green deployment**](#bluegreen-deployment)
-    - [Immutable Deployment ](#immutable-deployment-)
+    - [Immutable Deployment](#immutable-deployment)
 - [Lightsail](#lightsail)
 
 
@@ -45,7 +45,7 @@ You are **charged** only for the **resources you use** to run your application.
 {: .box-note}
 You can view Elastic Beanstalk stacks in AWS _CloudFormation_, but always use the Elastic Beanstalk service to make modifications.
 
-### CLI
+### BeansTalk CLI
 
 There was a specific EB CLI for BeansTalk, today it has been integrated in the AWS CLI.
 
@@ -57,7 +57,7 @@ eb create my-env
 aws elasticbeanstalk check-dns-availability --cname-prefix my-cname
 ```
 
-### **Concepts**
+### Concepts
 
 * **Application:** a logical collection of environment variables and components, application versions, and environment configurations.&#x20;
 * **Application Versions:** iterations of the application’s deployable code, pointing to an Amazon S3 object with the code source package. An application can have many versions, with each version being unique. You can deploy and access any application version at any time.
@@ -74,13 +74,13 @@ An all-at-once deployment applies updates to **all your instances at once**.
 When you execute this strategy, you experience **downtime**.\
 An appropriate strategy for **simple, immediate update requirements** when it’s not critical to have your application always available.
 
-#### &#x20;In-Place deployments
+#### In-Place deployments
 
 AWS CodeDeploy **stops currently running applications** on the target instance, **deploys** the latest revision, **restarts** applications, and **validates** successful deployment.\
 In-place deployments can support the automatic configuration of a **load balancer**.\
 Available for your platform updates, such as a coding-language platform update for a web server.
 
-#### Rolling deployments&#x20;
+#### Rolling deployments
 
 Applies changes to all of your instances **by rolling the updates from one instance to another**.\
 This approach **reduces possible downtime** during implementation of the change and allows available instances to run while you deploy.\
@@ -94,7 +94,7 @@ The **running** environment is considered the **blue** environment, and the **ne
 When your changes are ready and have gone through **all tests** in your green environment, you can **swap** the CNAMEs of the environments **to redirect** traffic to the newer running environment.\
 This strategy provides an **instantaneous update** with typically **zero downtime**.
 
-#### Immutable Deployment&#x20;
+#### Immutable Deployment
 
 Is best when an environment requires a **total replacement** of instances, rather than updates to an existing part of an infrastructure.\
 This approach implements a safety feature: EB creates a **temporary Auto Scaling group** behind your environment’s load balancer to contain the new instances with the updates you apply. If the update fails, the rollback process terminates the Auto Scaling group.\
@@ -102,4 +102,10 @@ If all instances pass the checks, EB **transfers the new configurations** to the
 
 ## Lightsail
 
-Consente di deployare un server con varie pre-configurazioni di SO e software senza conoscere praticamente nulla di AWS. E' possibile usare altro on il VPS peering. In sostanza è un sistema per iniziare a usare AWS in maniera soft.
+Provides easy-to-use cloud resources to get your web application or websites up and running in just a few clicks.  
+Lightsail offers **simplified services** such as instances, containers, databases, storage, and more.  
+You can use pre-configured blueprints like WordPress, Prestashop, or LAMP.
+
+The Lightsail console guides you through the configuration process, and in many cases, has components already configured.
+
+Can be used to start using AWS with a super-light approach, with almost no knowledge of how AWS works.

@@ -36,21 +36,21 @@ layout: aws_study_guide_page
 
 Amazon Virtual Private Cloud (Amazon VPC) is your network environment in the cloud.
 
-* **Region** specific
-* Max 5 VPC per region (per account)
+- **Region** specific
+- Max 5 VPC per region (per account)
 
-**One VPC**\
-Small applications managed by one person or a small team\
-High performance computing\
-Identity management
+One VPC
+: Small applications managed by one person or a small team
+: High performance computing
+: Identity management
 
-**Multi-VPC pattern**\
-Single team or single organizations\
-(ie: a single team with full access to DEV and PROD environments)
+Multi-VPC pattern
+: Single team or single organizations
+: (ie: a single team with full access to DEV and PROD environments)
 
-**Multi-account pattern**\
-Large organizations with multiple teams\
-(ie: developers with full access to DEV but limited or no access to PROD)
+Multi-account pattern
+: Large organizations with multiple teams
+: (ie: developers with full access to DEV but limited or no access to PROD)
 
 # IP Addressing
 
@@ -134,35 +134,37 @@ A NAT gateway is a Network Address Translation (NAT) managed service.
 
 You can use a NAT gateway so that instances in a _private_ subnet can connect to services outside your VPC but external services cannot initiate a connection with those instances.
 
-* Created in a **single AZ (Subnet)**\
+- Created in a **single AZ (Subnet)**\
   _If you have resources in multiple AZs and they share one NAT gateway, and if the NAT gateway’s AZ is down, resources in the other AZs lose internet access._
-* Supports TCP, UDP, and ICMP
-* Supports **5 Gbps** of bandwidth and automatically scales up to 100 Gbps.\
+- Supports TCP, UDP, and ICMP
+- Supports **5 Gbps** of bandwidth and automatically scales up to 100 Gbps.  
   If you require more bandwidth, you can split your resources into multiple subnets and create a NAT gateway in each subnet.
-* Private IP address or Elastic IP address **cannot be detached**.\
+- Private IP address or Elastic IP address **cannot be detached**.
   To use a different IP you must create a new NAT gateway, update your route tables, and then delete the existing NAT gateway.
 
 ## Connectivity types
 
-* **Public NAT Gatway** _(default)_\
-  __Instances in private subnets can connect to the internet through a public NAT gateway, but cannot receive unsolicited inbound connections from the internet.
-  * Located in a **public** subnet, associated with an **Elastic IP address**
-  * It is possible to route traffic from NAT Gateway to
-    * the Internet Gateway _OR_
-    * other VPCs _OR_
-    * your on-premises network
-* **Private NAT Gateway**\
-  ****Instances in private subnets can connect to other VPCs or your on-premises network through a private NAT gateway
-  * **Cannot have** an **Elastic IP address**
-  * It is possible to route traffic from NAT Gateway to
-    * a Transit Gateway
-    * Virtual Private Gateway
-    * If you route traffic from the private NAT gateway to the internet gateway, the internet gateway **drops** the traffic
+- **Public NAT Gatway** *(default)*
+  *Instances in private subnets can connect to the internet through a public NAT gateway, but cannot receive unsolicited inbound connections from the internet.*
+  - Located in a **public** subnet, associated with an **Elastic IP address**
+  - It is possible to route traffic from NAT Gateway to
+    - the Internet Gateway _OR_
+    - other VPCs _OR_
+    - your on-premises network
+- **Private NAT Gateway**
+  *Instances in private subnets can connect to other VPCs or your on-premises network through a private NAT gateway*
+  - **Cannot have** an **Elastic IP address**
+  - It is possible to route traffic from NAT Gateway to
+    - a Transit Gateway
+    - Virtual Private Gateway
+    - If you route traffic from the private NAT gateway to the internet gateway, the internet gateway **drops** the traffic
 
 ## Route table example
 
-\`VPC: 10.0.0.0/16\
-Subnet: 10.0.10.0/24
+
+`VPC: 10.0.0.0/16`  
+`Subnet: 10.0.10.0/24`
+
 
 | Destination | Target         | Description             |
 | ----------- | -------------- | ----------------------- |
@@ -177,108 +179,110 @@ It is recommended to use NAT gateways because they provide better availability a
 
 # Elastic Network Interface
 
-* Virtual network interface that you can attach to an instance in a VPC.
-* You can detach it from an instance, and attach it to another instance.
-* The **attributes** of a network interface, including the private IP address, elastic IP address, and MAC address, **follow the network interface**, because it is attached to or detached from an instance and reattached to another instance. **When you move a network interface** from one instance to another, **network traffic is redirected to the new instance.**
-* Each instance in a VPC has a default network interface (the primary network interface) that is assigned a private IP address from the IP address range of your VPC.
-* **You cannot detach a primary network interface from an instance**. You can create and attach additional network interfaces.
-* Attaching multiple network interfaces to an instance is useful when you want to:
-  * Create a management network. (public for traffic, private for ssh management)
-  * Use network and security appliances in your VPC.
-  * Create dual-homed instances with workloads/roles on distinct subnets.
-  * Create a low-budget, high-availability solution.
-* You can attach a **network interface in one subnet to an instance in another subnet** in the same VPC; however, both the network interface and the instance **must reside in the same AZ.**
+- Virtual network interface that you can attach to an instance in a VPC.
+- You can detach it from an instance, and attach it to another instance.
+-The **attributes** of a network interface, including the private IP address, elastic IP address, and MAC address, **follow the network interface**, because it is attached to or detached from an instance and reattached to another instance. **When you move a network interface** from one instance to another, **network traffic is redirected to the new instance.**
+- Each instance in a VPC has a default network interface (the primary network interface) that is assigned a private IP address from the IP address range of your VPC.
+- **You cannot detach a primary network interface from an instance**. You can create and attach additional network interfaces.
+- Attaching multiple network interfaces to an instance is useful when you want to:
+  - Create a management network. (public for traffic, private for ssh management)
+  - Use network and security appliances in your VPC.
+  - Create dual-homed instances with workloads/roles on distinct subnets.
+  - Create a low-budget, high-availability solution.
+- You can attach a **network interface in one subnet to an instance in another subnet** in the same VPC; however, both the network interface and the instance **must reside in the same AZ.**
 
 # **IPv6 Addresses**
 
-When you enable IPv6 in your VPC, the network operates in dual-stack mode, meaning that IPv4 and IPv6 commutations are independent of each other.\
-****Your resources can communicate over **IPv4, IPv6, or both**.
+When you enable IPv6 in your VPC, the network operates in dual-stack mode, meaning that IPv4 and IPv6 commutations are independent of each other.  
+Your resources can communicate over **IPv4, IPv6, or both**.
 
 # Elastic IP Address
 
-* **Static, public** IP address (only IPv4, max 5 per region)
-* Associated with an **instance** or a **network interface**
-* Accessed through the **Internet Gateway** (so traffic through VPN cannot access the elastic ip address)
+- **Static, public** IP address (only IPv4, max 5 per region)
+- Associated with an **instance** or a **network interface**
+- Accessed through the **Internet Gateway** (so traffic through VPN cannot access the elastic ip address)
 
 # Security Groups
 
-* Virtual firewall for both **ingress and egress** traffic **to aws resources**
-* **Allow outbound** and **deny inbound** traffic **by default**
-* **Stateful**
-* Traffic can be restricted by any IP protocol, by service port, as well as source/destination IP address (individual IP or CIDR block)
-* Chaining example:
-  * WebTier - Inbound rule allowing https (443) - Source 0.0.0.0./0
-  * Application: Inbound rule allowing http (80) - Source WebTier
-  * Database: Inbound rule allowing TCP (3306) - Source AppTier
+- Virtual firewall for both **ingress and egress** traffic **to aws resources**
+- **Allow outbound** and **deny inbound** traffic **by default**
+- **Stateful**
+- Traffic can be restricted by any IP protocol, by service port, as well as source/destination IP address (individual IP or CIDR block)
+- Chaining example:
+  - WebTier - Inbound rule allowing https (443) - Source 0.0.0.0./0
+  - Application: Inbound rule allowing http (80) - Source WebTier
+  - Database: Inbound rule allowing TCP (3306) - Source AppTier
 
 # Network Access Control Lists (ACLs)
 
-* Virtual firewalls at the **subnet** boundary
-* **Allow all** inbound and outbound traffic **by default**
-* **Stateless,** requiring **explicit** rules for both inbound and outbound traffic
-* To be used mainly for standard compliance
-* Best practice is to act it **redundantly with SG,** as a second layer of defense
+- Virtual firewalls at the **subnet** boundary
+- **Allow all** inbound and outbound traffic **by default**
+- **Stateless,** requiring **explicit** rules for both inbound and outbound traffic
+- To be used mainly for standard compliance
+- Best practice is to act it **redundantly with SG,** as a second layer of defense
 
 # Virtual Private Gateway (VGW)
 
-* Enables you to **establish private connections** (VPNs) **between a VPC and another network** (your own network).
-* Hardware backed
-* HA, active/passive mode on two tunnels (only one active), multiple DC
-* Attached to a **VPC**
-* Supports **multiple VPNs**
-* As an alternative can be used an EC2 with a VPN software (not the best option)
+- Enables you to **establish private connections** (VPNs) **between a VPC and another network** (your own network).
+- Hardware backed
+- HA, active/passive mode on two tunnels (only one active), multiple DC
+- Attached to a **VPC**
+- Supports **multiple VPNs**
+- As an alternative can be used an EC2 with a VPN software (not the best option)
 
 # AWS Direct Connect (DX)
 
-* Dedicated, private **network connection** of either 1 or 10 Gbps
-* It is provisioned through partners
-* Does not involve the internet; instead, it uses dedicated, private network connections between your on-premises solutions and AWS.
-* Use cases:
-  * Hybrid cloud architectures
-  * Continous trasnferring of large datasets
-  * Network performance predictability (real time apps)
-  * Security and compliance
-* VGW-------DX-------RemoteNetwork
+- Dedicated, private **network connection** of either 1 or 10 Gbps
+- It is provisioned through partners
+- Does not involve the internet; instead, it uses dedicated, private network connections between your on-premises solutions and AWS.
+- Use cases:
+  - Hybrid cloud architectures
+  - Continous trasnferring of large datasets
+  - Network performance predictability (real time apps)
+  - Security and compliance
+- VGW-------DX-------RemoteNetwork
 
 # VPC Peering connection
 
-* No hardware, no SPoF
-* No bandwith bottleneck
-* HA, redundant, horizontally scaled, no hardware
-* No IGW or VGW required
-* Associated to a **VPC**
-* **Intra and inter region** support
-* IP spaces **cannot overlap**
-* **Only one peering** **resource** between any two VPCs
-* Can be established between **different accounts**
-  * Owner of requester (Local VPC) sends a **request**
-  * The Peer VPC **accept** the request (no CIDR overlap)
-  * Add a **route** in the **local VPC to peer VPC** address range
-  * Add a **route** in the **peer VPC to local VPC** address range
-* It's a **one-to-one** relationship, can't be transitive
+- No hardware, no SPoF
+- No bandwith bottleneck
+- HA, redundant, horizontally scaled, no hardware
+- No IGW or VGW required
+- Associated to a **VPC**
+- **Intra and inter region** support
+- IP spaces **cannot overlap**
+- **Only one peering** **resource** between any two VPCs
+- Can be established between **different accounts**
+  - Owner of requester (Local VPC) sends a **request**
+  - The Peer VPC **accept** the request (no CIDR overlap)
+  - Add a **route** in the **local VPC to peer VPC** address range
+  - Add a **route** in the **peer VPC to local VPC** address range
+- It's a **one-to-one** relationship, can't be transitive
 
 # Transit Gateway
 
-* Connects up to **5.000 VPCs and on-premises environments** with a single gateway
-* Acts as a hub for all traffic
-* Fully managed, HA, flexible routing service
-* Allows for multicast and inter-regional peering
-* Each VPC route table: `Destination - target 10.1.0.0/16 - local 10.0.0.0/8 - tgw`
-* Transit gateway route table: `Destination - target 10.1.0.0/16 - vpc1 10.2.0.0/16 - vpc2 10.3.0.0/16 - vpc3`
+- Connects up to **5.000 VPCs and on-premises environments** with a single gateway
+- Acts as a hub for all traffic
+- Fully managed, HA, flexible routing service
+- Allows for multicast and inter-regional peering
+- Each VPC route table:  
+`Destination - target 10.1.0.0/16 - local 10.0.0.0/8 - tgw`
+- Transit gateway route table:  
+`Destination - target 10.1.0.0/16 - vpc1 10.2.0.0/16 - vpc2 10.3.0.0/16 - vpc3`
 
 # VPC Endpoint
 
-* Enables a **private connection** between a **VPC** and another AWS **service in the same region**, without traversal over the internet or NAT, VPN or DX.
-* HA, redundant, horizontally scaled, no hw
-* Associated to a **VPC**
-* Two types:
-  * **Interface endpoints** is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported service (many)
-  * **Gateway endpoint** is a gateway that is a target for a specified route in your route table, used for traffic destined to a supported AWS service (S3 and DynamoDB)
+- Enables a **private connection** between a **VPC** and another AWS **service in the same region**, without traversal over the internet or NAT, VPN or DX.
+- HA, redundant, horizontally scaled, no hw
+- Associated to a **VPC**
+- Two types:
+  - **Interface endpoints** is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported service (many)
+  - **Gateway endpoint** is a gateway that is a target for a specified route in your route table, used for traffic destined to a supported AWS service (S3 and DynamoDB)
 
 # VPC Flow Logs
 
-It's an option that can be used to debug network traffic.
+It's an option that can be used to **debug network traffic**.
 
-For each network session, metadata such as the source, destination, protocol, port, packet count, byte count, and time interval is captured and saved into CloudWatch or S3.\
-The log entry specifies whether the traffic was accepted or rejected.
+For each network session, metadata such as the source, destination, protocol, port, packet count, byte count, and time interval is captured and saved into **CloudWatch** or **S3**.  
+Each log entry specifies whether the traffic was accepted or rejected.
 
