@@ -61,12 +61,24 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 
+
+
+collections:
+  aws-study-guide:
+    output: true
+
+
+
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
   About me: "about"
+  AWS study guide: "aws-study-guide"
+#  Resources:
+#    - AWS study guide: "aws-study-guide"
+#    - Pippone: "pippo"
 #  Resources:
 #    - Beautiful Jekyll: "https://beautifuljekyll.com"
 #    - Learn markdown: "https://www.markdowntutorial.com/"

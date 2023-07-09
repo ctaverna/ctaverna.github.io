@@ -96,6 +96,7 @@ ul.toc li ul li ul li a {
 }
 
 ul.toc-title::before {
+  text-transform: uppercase;
   content: "On this page";
   font-weight: 900;
   color: white;
@@ -171,4 +172,76 @@ ul.toc-title::before {
   font-family: "'Times New Roman', Times, serif";
   float: right;
   color: #d1d1d1;
+}
+
+
+
+
+
+
+@media (min-width: 1200px) {
+  ul.toc {
+    width: 25% !important;
+    float: right !important;
+  }
+}
+
+@media (min-width: 500px) {
+  ul.toc {
+    width: 33% !important;
+    float: right !important;
+  }
+}
+
+ul.site-section {
+  font-size: 0.8125rem;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  list-style-position: inside;
+  list-style-type: none;
+  padding-left: 0;
+  font-weight: bolder;
+  color: dimgray;
+  /* white-space: nowrap; */
+}
+
+ul.site-section ul {
+  padding-inline-start: 5px;
+  list-style-type: none;
+}
+
+ul.site-section ul li a{
+  font-weight: normal;
+  color: grey;
+}
+
+ul.site-section>li {
+  color: lightgray;
+  margin-top: 10px;
+}
+
+ul.site-section>li.active>a,
+ul.site-section li ul>li.active,
+ul.site-section li ul li ul>li.active {
+  background-color: #e1e1e1;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  display: block;
+}
+
+
+ul.site-section li a {
+  color: gray;
+}
+
+.site-section-title {
+  border-bottom: 1px solid gray;
+  text-align: center;
+  font-weight: 900;
+  color: lightgray;
+  margin-bottom: 5px;
+}
+
+.min-padding-lr {
+  padding-right: 4px;
+  padding-left: 4px;
 }
