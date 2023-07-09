@@ -14,6 +14,19 @@ This is a demo post to show you how to write blog posts with markdown.  I strong
 
 ## Here is a secondary heading
 
+
+Questo è un separatore di riga
+
+---
+
+First Term
+: This is the definition of the first term.
+
+Second Term
+: This is one definition of the second term.
+: This is another definition of the second term.
+
+
 Here's a useless table:
 
 | Number | Next number | Previous number |
