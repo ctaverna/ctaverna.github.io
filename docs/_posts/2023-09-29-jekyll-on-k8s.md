@@ -51,8 +51,8 @@ The idea is to make it easy to manage your blog using this pretty simple flow:
 - When you are satisfied with the result, just commit and push the changes
 - An automated workflow will update the online "production" static website
 
-The workflow is now up and running, and I am very happy with it, but I had some troubles making it work.
-I’m on a Mac with macOS Sonoma 14.0.
+The workflow is now up and running, and I am very happy with it, but I had some troubles making it work.  
+I’m on a Mac with macOS Sonoma 14.0.  
 So, here is the step-by-step guide to get it working.
 
 ## Step 1 - Install Rancher Desktop
