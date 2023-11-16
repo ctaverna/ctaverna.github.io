@@ -78,11 +78,11 @@ _Custom builds_ were the original method of federation within AWS, but they have
 
 You can enable users to access resources across multiple AWS accounts, by using only one set of credentials.
 
-* **source account:**  the account in which the user resides
-* **target account:**  the account with the resources to which the user wants access
-  * Here must exist an _IAM role_ with:
-    * _permissions policy:_ grant access to AWS services and resources
-    * _trust policy:_ who can assume the role and their external ID
+- **source account:**  the account in which the user resides
+- **target account:**  the account with the resources to which the user wants access
+  - Here must exist an _IAM role_ with:
+    - _permissions policy:_ grant access to AWS services and resources
+    - _trust policy:_ who can assume the role and their external ID
 
 The _target account_ issues short-term credentials to the _role_, which allows access to AWS services and the resources specified.
 
@@ -91,7 +91,7 @@ The _target account_ issues short-term credentials to the _role_, which allows a
 Provides **federation** between an **IdP** and a **service provider (SP).**\
 The IdP and the SP exchange metadata in an **XML** file that contains **certificates** and **attributes.**
 
-**You interact only with the IdP**, and all authentication and authorization occurs between you and the IdP. &#x20;
+**You interact only with the IdP**, and all authentication and authorization occurs between you and the IdP.
 
 After a previously **established trust relationship** and a **successful authentication and authorization**:
 
