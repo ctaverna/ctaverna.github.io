@@ -47,12 +47,12 @@ This guide can be a good starting point to familiarize both with Jekyll and with
 
 The idea is to make it easy to manage your blog using this pretty simple flow:
 - Write your blog posts locally as a bunch of simple markdown text files
-- Jekyll generates in real time the static site
+- Jekyll generates in real time the static site and serves it locally
 - When you are satisfied with the result, just commit and push the changes
-- An automated workflow will update the online static website
+- An automated workflow will update the online "production" static website
 
-The workflow is now up and running, and I am very happy with it, but I had some troubles making it work.
-I’m on a Mac with macOS Ventura 13.6.
+The workflow is now up and running, and I am very happy with it, but I had some troubles making it work.  
+I’m on a Mac with macOS Sonoma 14.0.  
 So, here is the step-by-step guide to get it working.
 
 ## Step 1 - Install Rancher Desktop
@@ -535,5 +535,5 @@ An important point to highlight, that can be considered good or bad depending on
 ## Conclusion
 
 I hope that this guide can be useful to someone, for me it has been an interesting learn-by-doing experience.  
-If you see errors or something that can be made in a better or cleanaer way, I will be happy to improve it.
+If you see errors or you have any suggestions to handle the process in a better or cleaner way, I will be happy to integrate it and improve the solution.
 
