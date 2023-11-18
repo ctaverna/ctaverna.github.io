@@ -2,7 +2,7 @@
 title: "Compute and containers"
 is-folder: true
 subcategory: compute-and-containers
-sequence: 8
+sequence: 5
 layout: aws_study_guide_page
 permalink: /aws-study-guide/compute-and-containers
 ---

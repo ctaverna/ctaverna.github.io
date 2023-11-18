@@ -88,7 +88,7 @@ When you request a strongly consistent read, DynamoDB returns a response with th
 | Read      | **2** RRU     | **1** transactional write              | < 100 items / 4 MB       |
 
 * RCUs and WCUs across partitions **evenly.**\
-  ****_Example: if you have 1,000 RCUs and 10 partitions -> 100 RCUs allocated to each partition._
+  _Example: if you have 1,000 RCUs and 10 partitions -> 100 RCUs allocated to each partition._
 
 # Secondary index
 

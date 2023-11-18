@@ -18,12 +18,14 @@ layout: aws_study_guide_page
   - [Event Object](#event-object)
   - [Context Object](#context-object)
 - [Configuration](#configuration)
+    - [Environment Variables](#environment-variables)
+    - [Versioning](#versioning)
 
 
 Serverless compute platform that enables you to **run code** without provisioning or managing servers, with zero administration.
 
-You can configure code to **trigger automatically from other AWS services**, or **call it directly** from any web or mobile app.\
-AWS Lambda is sometimes referred to as a _function-as-a-service_ (FaaS).\
+You can configure code to **trigger automatically from other AWS services**, or **call it directly** from any web or mobile app.  
+AWS Lambda is sometimes referred to as a _function-as-a-service_ (FaaS).  
 
 
 * Java, Go, PowerShell, Node.js, C#, Python e Ruby
@@ -40,16 +42,15 @@ AWS Lambda is sometimes referred to as a _function-as-a-service_ (FaaS).\
   * Many more
 
 
-
 ## Invocation Models
 
 There are two invocation models for AWS Lambda.
 
-* **Nonstreaming Event Source (Push Model)**\
-  ****Amazon Echo, Amazon S3, Amazon SNS, and Amazon Cognito\
+- **Nonstreaming Event Source (Push Model)**  
+  Amazon Echo, Amazon S3, Amazon SNS, and Amazon Cognito  
   With this model a service invokes the Lambda **each time an event occurs**.
-* **Streaming Event Source (Pull Model)**\
-  ****Amazon Kinesis or Amazon DynamoDB stream.\
+- **Streaming Event Source (Pull Model)**  
+  Amazon Kinesis or Amazon DynamoDB stream.  
   With this model Lambda **polls** a stream and invokes the function **upon detection** of a new record on the stream.
 
 ## Invocation Type
@@ -67,23 +68,23 @@ The _**InvocationType**_ parameter can have three possible values:
 
 AWS Lambda functions include two types of permissions.
 
-* _**Execution permissions**_\
-  _****_Enable the Lambda function **to access other AWS resources** in your account.\
+- _**Execution permissions**_  
+  Enable the Lambda function **to access other AWS resources** in your account.  
   AWS Lambda refers to the IAM role that uses as an _execution role_.
-* _**Invocation permissions**_** ** \
-  ****The permissions **needed by an event source** to communicate with the Lambda.\
+- _**Invocation permissions**_  
+  The permissions **needed by an event source** to communicate with the Lambda.  
   Depending on the invocation model (push or pull), you can either update the access policy you associate with your AWS Lambda function (push) or update the execution role (pull).
 
 ### Permission policies
 
 * **LambdaBasicExecutionRole**\
-  ****Only CloudWatch log actions to write logs
+  Only CloudWatch log actions to write logs
 * **LambdaKinesisExecutionRole** \
-  ****Amazon Kinesis data stream and Amazon CloudWatch log actions
+  Amazon Kinesis data stream and Amazon CloudWatch log actions
 * **LambdaDynamoDBExecutionRole** \
-  ****DynamoDB stream and Amazon CloudWatch log actions
+  DynamoDB stream and Amazon CloudWatch log actions
 * **LambdaVPCAccessExecutionRole** \
-  ****EC2 actions to manage elastic network interfaces and CloudWatch log actions to write logs
+  EC2 actions to manage elastic network interfaces and CloudWatch log actions to write logs
 
 
 
@@ -113,48 +114,47 @@ Contains **data about the Lambda invocation itself**.\
 The context and structure of the object vary based on the language, but there are three primary data points that the context object contains:
 
 * **AWS Requestid**\
-  ****Tracks specific invocations of an AWS Lambda function, and it is important for error reports or when you need to contact AWS Support
+  Tracks specific invocations of an AWS Lambda function, and it is important for error reports or when you need to contact AWS Support
 * **Remaining time**\
-  ****Amount of time in milliseconds that remain before your function timeout occurs. Lambda functions can run a maximum of 300 seconds (5 minutes), but you can configure a shorter timeout.
+  Amount of time in milliseconds that remain before your function timeout occurs. Lambda functions can run a maximum of 15 minutes, but you can configure a shorter timeout.
 * **Logging**\
-  ****Contains information about which CloudWatch Log stream your log statements are sent to.\
+  Contains information about which CloudWatch Log stream your log statements are sent to.\
   This ability is provided by all language runtime.
 
 ## Configuration
 
 * **Memory**\
-  ****Amount of memory available to your function when it executes.\
-  ****You can allocate **128 MB** of RAM up to **3008 MB,** in 64-MB increments.
+  Amount of memory available to your function when it executes.\
+  You can allocate **128 MB** of RAM up to **3008 MB,** in 64-MB increments.
 * **Timeout**\
   How long your function executes for before a timeout is returned.\
-  The default timeout value is **3 seconds**, the maximum is 300 seconds (**5 minutes**).
+  The default timeout value is **3 seconds**, the maximum is **15 minutes**.
 * **Network**\
-  ****By default, your Lambda communicates from **insi,de a VPC** managed by AWS.\
+  By default, your Lambda communicates from **inside a VPC** managed by AWS.\
   If you deploy a Lambda function with access to your VPC, you may need may IP addresses available, using this formula: \
   `Projected peak concurrent executions * (Memory in GB / 3GB)`
 *   **Concurrency**\
-    ****By default, the **account-level** concurrency **within a given region** is set with **1,000**_._
+    By default, the **account-level** concurrency **within a given region** is set with **1,000**_._
 
     You can request a limit increase for concurrent executions from the AWS Support Center.\
-    If you need **to stop processing** any invocations, set the _**concurrency**_** to 0**.
+    If you need **to stop processing** any invocations, set the **_concurrency_ to 0**.
 * **Dead letter queues (DLQ)**\
-  ****When a failure occurs, your function generates an **exception** that is **sent to a DLQ**.\
+  When a failure occurs, your function generates an **exception** that is **sent to a DLQ**.\
   It can be an _SNS topic_ or an _SQS queue_.\
   For asynchronous event sources, Lambda makes 2 retries with automatic back-off.
-*   #### Environment Variables
 
-    Are simply key-value pairs that you create and modify as part of your function configuration.&#x20;
+#### Environment Variables
 
-    By default are encrypted at rest, using a default KMS key of _aws/lambda_.
-*   #### Versioning
+  Are simply key-value pairs that you create and modify as part of your function configuration.&#x20;
 
-    It allows you to create multiple **versions**, each function version has a unique ARN.\
-    After you publish a version, it is immutable, and you cannot change it.
+  By default are encrypted at rest, using a default KMS key of _aws/lambda_.
+#### Versioning
+
+  It allows you to create multiple **versions**, each function version has a unique ARN.\
+  After you publish a version, it is immutable, and you cannot change it.
 * **Alias**\
-  ****To avoid the work of changing ARN references based on version, it's a best practice to assign an alias to a particular funtion+version and use that alias in the application.
+  To avoid the work of changing ARN references based on version, it's a best practice to assign an alias to a particular funtion+version and use that alias in the application.
 
-****\
-****
 
 
 

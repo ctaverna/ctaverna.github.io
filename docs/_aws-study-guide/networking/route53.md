@@ -19,25 +19,26 @@ layout: aws_study_guide_page
 - You can also **purchase and manage domains**
 - If you have stringent SLA add **Global Accelerator**, protecting users and applications from caching
 - Routing options
-  - **Simple round robin**
-  - **Weighted round robin**  
+  - **Simple routing**
+  - **Weighted routing**  
 Enables A/B testing using any number between 0 and 255  
 ie: a:3/b:1 means a:75%, b:25%
   - **Latency based routing** (LBR) 
 Routes to the fastest endpoint, based on actual performance measurements
-- Health checks
-- Geolocation routing
-- Geoproximity routing (physical user-resource distance)
+  - **Failover**  policy (active-passive failover)
+  - **Geolocation** routing (based on user location)
+  - **Geoproximity** routing (based on resource location)
+  - **IP based**
 
-**Alias**\
+**Alias**  
 Similar to CNAME record, pointing to a LB
 
 # Traffic policies
 
 * Graphic editor
 * Rules can be based on location, latency...
-  * Value -> ELB target goup
-  * Value -> Weighted rule&#x20;
+  * Value -> ELB target group
+  * Value -> Weighted rule
     * 30% -> ELB TG
     * 70% -> IP
 

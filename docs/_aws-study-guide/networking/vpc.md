@@ -74,7 +74,7 @@ Supports BYOIP (Bring your own IP).
 /18 = 16.384 \
 /17 = 32.768 ....
 
-_It's not possible to change or modify the IP address range of an existing virtual private cloud (VPC) or subnet. However, you can add an additional IPv4 CIDR block as a secondary CIDR to your VPC, or create a new CPV and migrate your existing resources (if applicable)._
+_It's **not possible to change or modify the IP address range** of an existing virtual private cloud (VPC) or subnet. However, you can add an additional IPv4 CIDR block as a secondary CIDR to your VPC, or create a new CPV and migrate your existing resources (if applicable)._
 
 # Subnets
 
@@ -266,9 +266,14 @@ Your resources can communicate over **IPv4, IPv6, or both**.
 - Fully managed, HA, flexible routing service
 - Allows for multicast and inter-regional peering
 - Each VPC route table:  
-`Destination - target 10.1.0.0/16 - local 10.0.0.0/8 - tgw`
+`Destination - target`  
+`10.1.0.0/16 - local`    
+`10.0.0.0/8 - tgw`
 - Transit gateway route table:  
-`Destination - target 10.1.0.0/16 - vpc1 10.2.0.0/16 - vpc2 10.3.0.0/16 - vpc3`
+`Destination - target`    
+`10.1.0.0/16 - vpc1`    
+`10.2.0.0/16 - vpc2`  
+`10.3.0.0/16 - vpc3`
 
 # VPC Endpoint
 
@@ -276,13 +281,18 @@ Your resources can communicate over **IPv4, IPv6, or both**.
 - HA, redundant, horizontally scaled, no hw
 - Associated to a **VPC**
 - Two types:
-  - **Interface endpoints** is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported service (many)
-  - **Gateway endpoint** is a gateway that is a target for a specified route in your route table, used for traffic destined to a supported AWS service (S3 and DynamoDB)
+  - **Gateway endpoint**  
+  supports **S3 and DynamoDB**, not billed, same DNS, associated at VPC level
+  - **Interface endpoints**  
+  supports **most AWS service**, billed, specific DNS, associated on subnet level  
+  *it is an ENI attached with a SG*
+
+
 
 # VPC Flow Logs
 
 It's an option that can be used to **debug network traffic**.
 
 For each network session, metadata such as the source, destination, protocol, port, packet count, byte count, and time interval is captured and saved into **CloudWatch** or **S3**.  
-Each log entry specifies whether the traffic was accepted or rejected.
+Each log entry specifies whether the traffic was **accepted** or **rejected**.
 

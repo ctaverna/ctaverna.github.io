@@ -98,7 +98,7 @@ Associations follow this rules:
 
 \[1] **IAM role** -> \[1] **Instance profile** -> \[Many] **EC2s**
 
-\[1] **EC2s** -> \[1] **Instance profile --- one **_**at a time**_, and can be changed also while instance is running
+\[1] **EC2s** -> \[1] **Instance profile --- one  _at a time_**, and can be changed also while instance is running
 
 After this association the EC2 makes a call to STS to get new short-term credentials, that are exposed through EC2 metadata service
 
@@ -235,12 +235,6 @@ An **autoscaling group** is based on a _Launch configuration_, and contains deta
 
 Supports **multiple purchasing options** within the same auto scaling group (ASG). You can include spot, on remand and reserved instances.\
 For example on-demand instances for scheduled scaling and spot instances for dynamic scaling.
-
-![](broken-reference)
-
-![](broken-reference)
-
-![](broken-reference)
 
 ## Note su Elastic IP
 

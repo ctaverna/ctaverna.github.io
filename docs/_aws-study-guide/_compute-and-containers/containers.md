@@ -19,7 +19,6 @@ layout: aws_study_guide_page
 - [AWS Cloud Map](#aws-cloud-map)
 - [AWS App Mesh](#aws-app-mesh)
 - [AWS Fargate](#aws-fargate)
-- [](#)
 
 
 ## Elastic Container Service (ECS)
@@ -54,21 +53,19 @@ When creating a _service_, you can specify the **task definition and number of t
 If any containers in the task become unhealthy, the service is responsible and launches **replacement tasks.**
 
 * **Target Tracking Policies**\
-  ****Determine when to **scale OUT** the number of tasks based on a **target metric**.\
+  Determine when to **scale OUT** the number of tasks based on a **target metric**.\
   In the case of a conflict of multiple target tracking policies, the highest task count wins.
 * **Step Scaling Policies**\
-  ****Determine when to **scale IN or OUT** as metrics **increase or decrease**.
-*   **Task Placement Strategies**
-
-    Determine on a best-effort basis, **on which instances** tasks are distributed.\
-    The **`spread`** task placement strategy distributes tasks across multiple AZs as much as possible. Other strategies include **`binpack`** (try to leave the least amount of unused CPU or memory) and **`random`**.
-*   **Task Placement Constraints**
-
-    Enforce **specific requirements** on the container instances on which tasks launch, such as to specify the instance type as t2.micro.
+  Determine when to **scale IN or OUT** as metrics **increase or decrease**.
+*   **Task Placement Strategies**  
+Determine on a best-effort basis, **on which instances** tasks are distributed.\
+The **`spread`** task placement strategy distributes tasks across multiple AZs as much as possible. Other strategies include **`binpack`** (try to leave the least amount of unused CPU or memory) and **`random`**.
+*   **Task Placement Constraints**  
+Enforce **specific requirements** on the container instances on which tasks launch, such as to specify the instance type as t2.micro.
 
 #### **Amazon ECS Service Discovery**
 
-_A_llows you to **assign** Amazon Route 53 **DNS entries automatically** for tasks your service manages. A service directory maps DNS entries to available service endpoints.\
+Allows you to **assign** Amazon Route 53 **DNS entries automatically** for tasks your service manages. A service directory maps DNS entries to available service endpoints.\
 _ECS Service Discovery_ maintains **health checks** of containers, and it removes them from the service directory should they become unavailable.
 
 **Amazon ECS Container Agent**
@@ -102,5 +99,3 @@ App Mesh uses **Envoy**, an open source service mesh proxy which is deployed alo
 ## AWS Fargate
 
 AWS Fargate is a **technology** for Amazon ECS and Amazon Elastic Container Service for Kubernetes (Amazon EKS) that allows you to **run containers without having to manage servers or clusters**.
-
-##

@@ -10,21 +10,19 @@ layout: aws_study_guide_page
 {: .toc .toc-title}
 - [How it works](#how-it-works)
 
-
-
 Global network of **edge locations** to deliver a **cached** copy of **web content** to your customers, or simply a CDN (Content Delivery Network).
 
-* Reduce **response time** using nearest edge location
-* **Throughput** dramatically increased
-* Provides an additional layer of **security** for your architecture
-* Supports **websocket** protocol
-* Types of content:
-  * **Static**: images,js, html etc..... with high TTL
-  * **Video**: rtmp and http streaming support
-  * **Dynamic**: customizations and non-cachable content
-  * **User input:** http action support including Put/Post
-  * **Secure**: Serve the content securely with SSL (https)
-* **Geo-restriction** features (also known as geoblocking) at country level, or even with finer granularity if using third party geolocation services
+- Reduce **response time** using nearest edge location
+- **Throughput** dramatically increased
+- Provides an additional layer of **security** for your architecture
+- Supports **websocket** protocol
+- Types of content:
+  - **Static**: images,js, html etc... with high TTL
+  - **Video**: rtmp and http streaming support
+  - **Dynamic**: customizations and non-cachable content
+  - **User input:** http action support including Put/Post
+  - **Secure**: Serve the content securely with SSL (https)
+- **Geo-restriction** features (also known as geoblocking) at country level, or even with finer granularity if using third party geolocation services
 
 # How it works
 

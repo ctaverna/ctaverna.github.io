@@ -42,7 +42,7 @@ An _elastic_ resource is _also scalable_, the opposite is not always true.
 ## High availability
 
 The system will **continue to function** despite the complete failure of any component of the architecture.
-_NAT GW, Elastricache, Redshift, RDS multiaz..._
+_NAT GW, Elastricache, Redshift, RDS multi-AZ..._
 
 ## Fault tolerance
 

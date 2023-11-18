@@ -76,11 +76,11 @@ To create an CloudFormation service role, make sure that the role has a **trust 
 As a user, your _IAM credentials_ will need to include the ability to pass the role to AWS CloudFormation, using the `iam:PassRole` permission.
 
 You can submit a template from a **local file** or via a URL that points to an object in **S3**.  
-If you submit from a local file the template is uploaded on S3, so you need these permissions:
-`- cloudformation:CreateUploadBucket`\
-`- s3:PutObject`\
-`- s3:ListBucket`\
-`- s3:GetObject`\
+If you submit from a local file the template is uploaded on S3, so you need these permissions:  
+`- cloudformation:CreateUploadBucket`  
+`- s3:PutObject`  
+`- s3:ListBucket`  
+`- s3:GetObject`  
 `- s3:CreateBucket`
 
 ## Template anatomy
@@ -225,7 +225,7 @@ A common use case would be, for example, to conditionally set an EC2 instance to
 Set of macros you can use to reduce the amount of time spent in the authoring process.\
 Transforms are applied to the template during the _change set_ creation process.
 
-- **WS::Include Transform**  
+- **AWS::Include Transform**  
 Acts as a tool to import template snippets from S3 buckets into the template being developed. When the template is evaluated, a change set is created, and the template snippet is copied from its location and is added to the overall template structure.  
 You can use this transform anywhere in a template, except the _Parameters_ and _AWSTemplateFormatVersion_ sections. Nested transforms are not supported.  
 ```
