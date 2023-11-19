@@ -37,10 +37,11 @@ Provide iSCSI virtual tape library (VTL) and stores data in S3 or S3 Glacier
 
 # FSx
 
-Two filesystems to choose:
-
-* **FSx for Windows File Server**: SMB, Windows NTFS, ActiveDirectory (AD) integration, Distributed file system (DFS). High levels of throughput and sub-millisecond latency
-* **FSx for Lustre**: fully managed file system that is optimized for high performance computing (HPC), machine learning, and media processing workflows. A single Amazon FSx for Lustre file system can process massive data sets with hundreds of gigabytes (GB) per second of throughput at sub-millisecond latencies. Amazon FSx for Lustre can be integrated with Amazon S3, so you can join long-term data sets with a high performance file system. Data can be automatically copied to and from Amazon S3 from your Amazon FSx for Lustre file system.
+- **Amazon File Cache:** a high-speed cache on AWS that makes it easier to process file data, regardless of where the data is stored. It serves data in the cache at consistent high speeds with sub-millisecond latency to applications running on AWS—up to hundreds of GB/s of throughput, and up to millions of operations per second. Automatically loads data into the cache when it’s accessed for the first time and releases data when it’s not used.
+- **FSx for Windows File Server**: SMB, Windows NTFS, ActiveDirectory (AD) integration, Distributed file system (DFS). High levels of throughput and sub-millisecond latency
+- **FSx for Lustre**: fully managed file system that is optimized for high performance computing (HPC), machine learning, and media processing workflows. Ccan process hundreds of GB per second of throughput at sub-millisecond latencies. Amazon FSx for Lustre can be integrated with Amazon S3, so you can join long-term data sets with a high performance file system. Data can be automatically copied to and from Amazon S3 from your Amazon FSx for Lustre file system.
+- **NetApp ONTAP**
+- **OpenZFS**
 
 # AWS Snowball
 

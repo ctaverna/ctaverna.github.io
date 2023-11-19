@@ -1,3 +1,21 @@
+---
+title: "Redshift"
+subtitle: "Redshift"
+is-folder: false
+subcategory: "analytics"
+sequence: 1
+layout: aws_study_guide_page
+---
+
+{: .toc .toc-title}
+- [Redshift](#redshift)
+  - [Nodes](#nodes)
+    - [Leader node](#leader-node)
+    - [Compute nodes and slices](#compute-nodes-and-slices)
+  - [**Distribution Strategy**](#distribution-strategy)
+
+
+
 # Redshift
 
 Amazon Redshift integrates with various ETL tools, BI reporting, data mining, and analytics tools.

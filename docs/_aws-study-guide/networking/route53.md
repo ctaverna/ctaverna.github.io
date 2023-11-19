@@ -10,6 +10,7 @@ layout: aws_study_guide_page
 {: .toc .toc-title}
 - [How it works](#how-it-works)
 - [Traffic policies](#traffic-policies)
+- [Restricting access](#restricting-access)
 
 
 # How it works
@@ -42,3 +43,14 @@ Similar to CNAME record, pointing to a LB
     * 30% -> ELB TG
     * 70% -> IP
 
+# Restricting access
+CloudFront provides two ways to send authenticated requests to an Amazon S3 origin:  
+- Origin Access Control (OAC) 
+- Origin Access Identity (OAI)
+
+We recommend using OAC because it supports:
+- All Amazon S3 buckets in all AWS Regions
+- Amazon S3 server-side encryption with AWS KMS (SSE-KMS)
+- Dynamic requests (PUT and DELETE) to Amazon S3
+
+Origin access identity (OAI) doesn't work for the scenarios in the preceding list, or it requires extra workarounds in those scenarios. 

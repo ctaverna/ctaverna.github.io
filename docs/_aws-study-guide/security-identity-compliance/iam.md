@@ -185,7 +185,23 @@ Example of a policy to allow a Lambda function access a DynamoDB table
 * A **single policy** can be **attached to multiple entities**
 * A **single entity** can have **multiple policies** attached to it
 
-## ARN
+
+## IAM Access analyzer
+- Helps identify resources that are **shared** with an external entity
+- **Validates** IAM policies against **policy grammar** and **best practices**
+- **Generates** IAM policies based on access activity in your CloudTrail logs
+
+> IAM Access Analyzer analyzes **only** policies applied to resources **in the same AWS Region** where it's enabled. To monitor all resources you must create an analyzer in each Region.
+
+## IAM Policy Simulator
+Can eb used to test and troubleshoot identity-based policies and IAM permissions boundaries.
+- Test identity-based policies attached to users, user groups, or roles
+- If more than one policy is attached, you can test **all** the policies, or select **individual** policies to test.
+- You can test **which actions** are **allowed or denied**
+> You can test the impact of **SCPs** on your identity-based policies, but the policy simulator **doesn't evaluate SCPs that have any conditions**
+- To use a resource-based policy you must include the resource in the simulation
+
+# ARN
 
 An ARN (Amazon Resource Name) always starts with **arn:** and can include the following components to identify a particular AWS resource uniquely:
 
@@ -195,7 +211,7 @@ An ARN (Amazon Resource Name) always starts with **arn:** and can include the fo
 * **Account ID** The account in which the resource resides. Some resources do not require an account ID to be specified.
 * **Resource** The specific resource within the namespace of the AWS service. For services that have multiple types of resources, there may also be a resource type.
 
-#### Examples
+### Examples
 
 ```
 Example formats:

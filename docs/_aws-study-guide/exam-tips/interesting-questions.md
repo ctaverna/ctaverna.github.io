@@ -1,6 +1,22 @@
-# Interesting questions
+---
+title: "Interesting questions"
+subtitle: "A collection of question not so easy"
+is-folder: false
+subcategory: "exam-tips"
+sequence: 1
+layout: aws_study_guide_page
+---
 
-## Introduction to AWS
+
+{: .toc .toc-title}
+- [Introduction to AWS](#introduction-to-aws)
+- [Database](#database)
+- [Encryption](#encryption)
+- [Deployment strategies](#deployment-strategies)
+- [Deployment as code](#deployment-as-code)
+- [Infrastructure as Code](#infrastructure-as-code)
+
+# Introduction to AWS
 
 **When you use identity federation to assume a role, where are the credentials you use to make AWS API calls generated?**
 
@@ -18,6 +34,7 @@
 
 </details>
 
+---
 **The principals who have access to assume an IAM role are defined in which document?**
 
 1. IAM access policy
@@ -34,6 +51,7 @@
 
 </details>
 
+---
 **A new developer has joined your small team. You would like to help your team member set up a development computer for access to the team account quickly and securely. How do you proceed?**
 
 1. Generate an access key based on your IAM user, and share it with your team member.
@@ -50,6 +68,7 @@
 
 </details>
 
+---
 **You have a process running on an EC2 instance that exceeds the 2 GB of RAM allocated to the instance. This is causing the process to run slowly. How can you resolve the issue?**
 
 1. Stop the instance, change the instance type to one with more RAM, and then start the instance.
@@ -66,6 +85,7 @@
 
 </details>
 
+---
 **You have launched an EC2 Windows instance, and you would like to connect to it using the Remote Desktop Protocol. The instance is in a public subnet and has a public IP address. How do you find the password to the Administrator account?**
 
 1. Decrypt the password by using the private key from the Amazon EC2 key pair that you used to launch the instance.
@@ -84,6 +104,7 @@
 
 
 
+---
 **Which of the following are true about EC2 instance types? (Select TWO.)**
 
 1. All Amazon EC2 instance types include instance store for ephemeral storage.
@@ -100,7 +121,8 @@
 
 </details>
 
-## Database
+---
+# Database
 
 **How many read capacity units (RCUs) do you need to support 25 **_**eventually consistent**_** reads per seconds of 15 KB?**
 
@@ -121,6 +143,7 @@
 
 </details>
 
+---
 **Your company would like to implement a highly available caching solution for its SQL database running on Amazon RDS. Currently, all of its services are running in the AWS Cloud. As their lead developer, what should you recommend?**
 
 1. Implement your own caching solution on-premises.
@@ -137,7 +160,7 @@
 
 </details>
 
-## Encryption
+# Encryption
 
 **Which components are required in an encryption system? (Select THREE.)**
 
@@ -156,6 +179,7 @@
 
 </details>
 
+---
 **Which option uses AWS Key Management Service (AWS KMS) to manage keys to provide server-side encryption to Amazon Simple Storage Service (Amazon S3)?**
 
 1. Amazon S3 managed encryption keys (SSE-S3)
@@ -172,6 +196,7 @@
 
 </details>
 
+---
 **Which AWS encryption service provides asymmetric encryption capabilities?**
 
 1. AWS Key Management Service (AWS KMS).
@@ -188,6 +213,7 @@
 
 </details>
 
+---
 **Which AWS encryption service provides symmetric encryption capabilities? (Select TWO.)**
 
 1. AWS Key Management Service (AWS KMS).
@@ -204,6 +230,7 @@
 
 </details>
 
+---
 **An organization is using AWS Key Management Service (AWS KMS) to support encryption and would like to encrypt Amazon Elastic Block Store (Amazon EBS) volumes. It wants to encrypt its volumes quickly, with little development time. As their lead developer, what should you recommend?**
 
 1. Implement AWS KMS to encrypt the Amazon EBS volumes.
@@ -220,8 +247,9 @@
 
 </details>
 
-## Deployment strategies
+# Deployment strategies
 
+---
 **Which of the following resources can AWS Elastic Beanstalk use to create a web server environment? (Select FOUR.)**
 
 1. Amazon Cognito User Pool
@@ -241,6 +269,7 @@
 
 </details>
 
+---
 **Which operating systems does AWS Elastic Beanstalk support? (Select TWO.)**
 
 1. Amazon Linux
@@ -258,6 +287,7 @@
 
 </details>
 
+---
 **Which of the following components can AWS Elastic Beanstalk deploy? (Select TWO.)**
 
 1. Amazon Elastic Compute Cloud (Amazon EC2) instances with write capabilities to an Amazon DynamoDB table
@@ -275,6 +305,7 @@
 
 </details>
 
+---
 **Which AWS Identity and Access Management (IAM) entities are used when creating an environment? (Select TWO.)**
 
 1. Federated role
@@ -292,6 +323,7 @@
 
 </details>
 
+---
 **Which account is billed for user-accessed AWS resources allocated by AWS Elastic Beanstalk?**
 
 1. The account running the services
@@ -308,7 +340,7 @@
 
 </details>
 
-## Deployment as code
+# Deployment as code
 
 **If you specify a hook script in the ApplicationStop lifecycle event of an AWS CodeDeploy appspec.yml, will it run on the first deployment to your instance(s)?**
 
@@ -326,6 +358,7 @@
 
 </details>
 
+---
 **Your team is building a deployment pipeline to a sensitive application in your environment using AWS CodeDeploy. The application consists of an Amazon EC2 Auto Scaling group of instances behind an Elastic Load Balancing load balancer. The nature of the application requires 100 percent availability for both successful and failed deployments. The development team want to deploy changes multiple times per day. How would this be achieved at the lowest cost and with the fastest deployments?**
 
 1. Rolling deployments with an additional batch
@@ -345,6 +378,7 @@ Option **D** is correct as immutable updates would result in the **fastest deplo
 
 </details>
 
+---
 **In what ways can pipeline actions be ordered in a stage? (Select TWO.)**
 
 1. Series
@@ -362,6 +396,7 @@ Option **D** is correct as immutable updates would result in the **fastest deplo
 
 </details>
 
+---
 **If you would like to delete an AWS CloudFormation stack before you deploy a new one in your pipeline, what would be the correct set of actions?**
 
 1. One action that specifies “Create or update a stack.”
@@ -380,6 +415,7 @@ Option C is incorrect because the final action, “Replace a failed stack,” is
 
 </details>
 
+---
 **How can you connect to an AWS CodeCommit repository without Git credentials?**
 
 1. It is not possible.
@@ -397,6 +433,7 @@ You can use the CodeCommit credential helper to convert an IAM access key and se
 
 </details>
 
+---
 **Which pipeline actions support AWS CodeBuild projects? (Select TWO.)**
 
 1. Invoke
@@ -414,6 +451,7 @@ You can use the CodeCommit credential helper to convert an IAM access key and se
 
 </details>
 
+---
 **Can data passed to build projects using environment variables be encrypted or protected?**
 
 1. Yes, this is supported natively by AWS CodeBuild.
@@ -430,6 +468,7 @@ You can use the CodeCommit credential helper to convert an IAM access key and se
 
 </details>
 
+---
 **What is the only deployment type supported by on-premises instances?**
 
 1. In-place
@@ -446,6 +485,7 @@ You can use the CodeCommit credential helper to convert an IAM access key and se
 
 </details>
 
+---
 **If your AWS CodeDeploy configuration includes creation of a file, nginx.conf, but the file already exists on the server (prior to the use of AWS CodeDeploy), what is the default behavior that will occur during deployment?**
 
 1. The file will be replaced.
@@ -462,6 +502,7 @@ Options A and B are incorrect because AWS CodeDeploy will not modify files on an
 
 </details>
 
+---
 **How does AWS Lambda support in-place deployments?**
 
 1. Function versions are overwritten during the deployment.
@@ -477,6 +518,7 @@ C. Option A is incorrect because function versions cannot be modified after they
 
 </details>
 
+---
 **What is the minimum number of stages required by a pipeline in AWS CodePipeline?**
 
 1. 0
@@ -493,7 +535,7 @@ C. Option A is incorrect because function versions cannot be modified after they
 
 </details>
 
-## Infrastructure as Code
+# Infrastructure as Code
 
 **A custom resource associated with AWS Lambda in your stack creates successfully; however, it attempts to update the resource result in the failure message Custom Resource failed to stabilize in the expected time. After you add a service role to extend the timeout duration, the issue still persists. What may also be the cause of this error?**
 
@@ -511,6 +553,7 @@ C. Option A is incorrect because function versions cannot be modified after they
 
 </details>
 
+---
 **After you deploy an AWS Serverless Application Model (AWS SAM) template to AWS CloudFormation, can you view the original template? Why or why not?**
 
 1. No, after the template is submitted and the AWS::Serverless transform is executed, an AWS CloudFormation-supported template is generated.
@@ -527,6 +570,7 @@ C. Option A is incorrect because function versions cannot be modified after they
 
 </details>
 
+---
 **When defining an AWS Serverless Application Model (AWS SAM) template, how can you create an Amazon API Gateway as part of the stack?**
 
 1. By defining an AWS::ApiGateway::RestApi resource and any associated AWS::ApiGateway::Method resources
@@ -544,6 +588,7 @@ C. Option A is incorrect because function versions cannot be modified after they
 
 </details>
 
+---
 **Which of these options allows you to specify a required number of signals to mark the resource as CREATE\_COMPLETE?**
 
 1. Wait Condition
@@ -560,6 +605,7 @@ Wait conditions accept only one signal and will not track additional signals fro
 
 </details>
 
+---
 **An AWS CloudFormation template declares two resources: an AWS Lambda function and an Amazon DynamoDB table. The function code is declared inline as part of the template and references the table. In what order will AWS CloudFormation provision the two resources?**
 
 1. Amazon DynamoDB table, AWS Lambda function
@@ -576,6 +622,7 @@ Because the reference to the Amazon DynamoDB table is made as part of an arbitra
 
 </details>
 
+---
 **Which of the update types results in resource downtime? (Select TWO.)**
 
 1. Update with No Interruption
@@ -593,6 +640,7 @@ Because the reference to the Amazon DynamoDB table is made as part of an arbitra
 
 </details>
 
+---
 **What does a service token represent in a custom resource declaration?**
 
 1. The AWS service that receives the request

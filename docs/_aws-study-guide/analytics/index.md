@@ -2,7 +2,7 @@
 title: "Analytics"
 is-folder: true
 subcategory: analytics
-sequence: 99
+sequence: 8
 layout: aws_study_guide_page
 permalink: /aws-study-guide/analytics
 ---
