@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "I asked 3 cloud architecture questions to Amazon Q"
+title:  "I challenged Amazon Q with 3 cloud architecture questions"
 subtitle: "And compared the result with Copilot and ChatGPT"
 tags: [AI, aws, software architecture, cloud architecture, cloud services]
-imgs-path: /assets/img/3-questions-to-amazon-q/
-cover-img: /assets/img/3-questions-to-amazon-q/cover.jpg
-permalink: /3-questions-to-amazon-q/
+imgs-path: /assets/img/cloud-architecture-questions-amazon-q/
+cover-img: /assets/img/cloud-architecture-questions-amazon-q/cover.jpg
+permalink: /cloud-architecture-questions-amazon-q/
 ---
 
 {: .toc .toc-title}
@@ -67,7 +67,7 @@ May a more precise question sound better to Q?
 
 This answer is pretty good.  
 Of course, it's just a starting point and it's necessary to deepen into many details.  
-But in my opinion, this is absolutely a good answer: it explores the problem of ingesting the votes, where to store the data and how to read the data at high frequency. Amazon Q does not mention any computing service, but probably this is not a crucial point at this level of design.
+But in my opinion, this is absolutely a good answer: it explores the problem of ingesting the votes, where to store the data, and how to read the data at high frequency. Amazon Q does not mention any computing service, but probably this is not a crucial point at this level of design.
 
 Let's check what other competitors can do.
 
@@ -98,7 +98,7 @@ Copilot is shortening and simplifying the question, moving the focus only on the
  
 At first glance, this answer seems even better than the one given by Amazon Q. But if you pay attention to the details, you can see that ChatGPT is just aggregating generic service descriptions.  
 This is ok, and there is for sure a considerable value in giving a good selection of services that could be used in this architecture.
-But, in the response given by Amazon Q, each service description is customized based on the specific use case of vote ingestion. I don't know if this is just a cosmetic difference, but it seems to me an indicator of a deeper "understanding" of the problem.
+However, in the response given by Amazon Q, each service description is customized based on the specific use case of vote ingestion. I don't know if this is just a cosmetic difference, but it seems to me an indicator of a deeper "understanding" of the problem.
 
 In my opinion, Amazon Q is the winner of this test.  
 These are the points I decided to assign:
