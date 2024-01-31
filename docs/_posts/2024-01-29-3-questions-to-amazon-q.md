@@ -26,14 +26,16 @@ permalink: /cloud-architecture-questions-amazon-q/
 - [Conclusion](#conclusion)
 
 
-After the re:Invent 2023 release announcement of Amazon Q, I immediately started to wonder if it can **really** be a useful tool to help me in my daily job as a cloud architect using AWS services.  
+After the release announcement of *Amazon Q* at re:Invent 2023, I immediately started to wonder if it could **really** be a useful tool to help me in my daily job as a cloud architect using AWS services.  
 Is it just a cool toy or a game-changer?  
 
-My basic expectation is that Amazon Q can be a good assistant in the daily boring and time-consuming task of searching for information in the AWS documentation. 
-I’m not saying that creating a smart interface for information gathering should be taken for granted because it’s an easy implementation, of course. But we are in 2024, we are talking about AWS, we are used to seeing and using generative AI tools, and the wow effect has (almost) gone.
-I appreciate a lot the AWS idea of creating a “generative AI–powered assistant designed for work”, for real-world users and not just for demonstrations.
-So, focusing on its generic ability to be an expert in AWS I made my tests using the Amazon Q assistant in the sidebar of the AWS management console. This is just one of the capabilities of Amazon Q, but is for sure the most immediate to interact with.
+### The expectation
+My basic expectation is that Amazon Q can be a good assistant in the daily boring and time-consuming task of searching for information in the AWS documentation. After all, we are in 2024, we are talking about AWS, we are used to seeing and using generative AI tools, and the wow effect has (almost) gone. Less than this would be not enough.  
+My objective is to understand if Q is something more than other general-purpose generative AI tools.  
+I appreciate a lot the AWS idea of creating a *“generative AI–powered assistant designed for work”*, designed for real-world users and not just for demonstrations.  
 
+### How I made the test
+So, focusing on its generic ability to be an expert in AWS I made my tests using the Amazon Q assistant in the sidebar of the AWS management console. This is just one of the capabilities of Amazon Q, but is for sure the most immediate to interact with.  
 I started chatting with Q about a simple architectural design question, then I asked for help with a technical issue, and finally a cost evaluation.  
 As an additional quality check, I submitted each question also to Copilot and ChatGPT 3.5, and then I expressed my evaluation of the quality of each response.
 
