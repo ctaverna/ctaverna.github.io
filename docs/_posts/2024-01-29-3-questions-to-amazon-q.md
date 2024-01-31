@@ -31,8 +31,8 @@ Is it just a cool toy or a game-changer?
 
 ### The expectation
 My basic expectation is that Amazon Q can be a good assistant in the daily boring and time-consuming task of searching for information in the AWS documentation. After all, we are in 2024, we are talking about AWS, we are used to seeing and using generative AI tools, and the wow effect has (almost) gone. Less than this would be not enough.  
-My objective is to understand if Q is something more than other general-purpose generative AI tools.  
 I appreciate a lot the AWS idea of creating a *“generative AI–powered assistant designed for work”*, designed for real-world users and not just for demonstrations.  
+My objective is to understand if Q is something more than other general-purpose generative AI tools.
 
 ### How I made the test
 So, focusing on its generic ability to be an expert in AWS I made my tests using the Amazon Q assistant in the sidebar of the AWS management console. This is just one of the capabilities of Amazon Q, but is for sure the most immediate to interact with.  
