@@ -2,7 +2,7 @@
 layout: post
 title:  "Introducing Mr-Know-It-All-O-Matic"
 subtitle: "An AI-driven dissenter built with AWS PartyRock"
-tags: [AI, AWS, Bedrock, PartyRock]
+tags: [AI, aws, Bedrock, PartyRock]
 imgs-path: /assets/img/mr-know-it-all-o-matic/
 cover-img: /assets/img/mr-know-it-all-o-matic/cover.png
 permalink: /mr-know-it-all-o-matic/
