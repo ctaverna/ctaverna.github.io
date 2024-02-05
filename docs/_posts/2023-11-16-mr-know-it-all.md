@@ -2,7 +2,7 @@
 layout: post
 title:  "Introducing Mr-Know-It-All-O-Matic"
 subtitle: "An AI-driven dissenter built with AWS PartyRock"
-tags: [AI, AWS, Bedrock, PartyRock]
+tags: [AI, aws, Bedrock, PartyRock]
 imgs-path: /assets/img/mr-know-it-all-o-matic/
 cover-img: /assets/img/mr-know-it-all-o-matic/cover.png
 permalink: /mr-know-it-all-o-matic/
@@ -19,7 +19,7 @@ permalink: /mr-know-it-all-o-matic/
 [**PartyRock**](https://partyrock.aws/) has been launched today.  
 It’s a space where you can build *AI-generated apps* in a playground powered by *Amazon Bedrock*. You can use it to experiment and create applications at the speed of light.  
 
-Any attempt to explain how this application works would probably take longer than simply opening it and start playing. So I won’t waste my and your time explaining something that doesn’t need an explanation. And, of course, there is the [official guide](https://partyrock.aws/guide/getStarted) for that.
+Any attempt to explain how this application works would probably take longer than simply opening it and start playing. So I won’t spend my and your time explaining something that basically doesn’t need an explanation. And, of course, there is the [official guide](https://partyrock.aws/guide/getStarted) for that.
 
 *PartyRock* is not a tool for technicians or generative AI experts. Even those who have never written a single line of code can create and deploy a web application with AI capabilities in minutes. In this case, the expression *“in minutes”*, it’s not just a slogan, but it's real: I created my first **online and working** generative AI application literally in **10 minutes**.
 
