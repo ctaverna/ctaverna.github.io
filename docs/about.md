@@ -8,10 +8,11 @@ permalink: about
 ![](/assets/img/about/me.png){: .float-left .max-width-40}
 
 My name is Claudio Taverna.  
-
 I live in Italy, I'm 43 and I work as a software architect for [Tierra Telematics](https://www.tierratelematics.com/).
 
-I have been working in the field of software engineering for 20 years, formerly as a C# developer, then as a software architect and currently as a cloud solution architect, mainly on AWS.  
+I have been working in the field of software engineering for 20 years, formerly as a C# developer, then as a software architect and currently as a cloud solution architect, mainly on AWS.
+
+I'm an *AWS Community Builder* since 2023.
 
 You can contact me through [my Linkedin profile](https://www.linkedin.com/in/claudio-taverna/) or at [taverna.claudio@gmail.com](mailto:taverna.claudio@gmail.com).
 
