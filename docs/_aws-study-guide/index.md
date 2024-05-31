@@ -9,7 +9,6 @@ layout: aws_study_guide_page
 permalink: /aws-study-guide/
 ---
 
-
 # What's this guide?
 
 While studying for the 3 AWS Associate level certifications I started taking notes in markdown format.  
