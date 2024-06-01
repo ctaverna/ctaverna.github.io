@@ -1,1 +1,0 @@
-Lo usiamo già in Tierra per gli utenti quicksight
