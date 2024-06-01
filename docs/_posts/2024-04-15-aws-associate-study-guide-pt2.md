@@ -8,7 +8,7 @@ cover-img: /assets/img/aws-associate-study-guide/cover.jpg
 permalink: /aws-associate-study-guide-pt2/
 ---
 
-This is the second block of my notes about AWS services, taken while studying for the associate-level certifications.  
+This is the second block of my study notes about AWS services, taken while preparing for the associate-level certifications.  
 To get more information about this, refer to [Part 1](https://ctaverna.github.io/aws-associate-study-guide-pt1/) blog post.  
 
 The review process has been a little bit longer than expected, but finally here it is.  
