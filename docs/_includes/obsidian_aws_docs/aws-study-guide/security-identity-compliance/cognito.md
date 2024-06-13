@@ -8,18 +8,17 @@
 
 Fully-managed service that provides **authentication, authorization, and user management** for web and mobile apps.
 
-* _Amazon Cognito Sync store_\
-  _A_uthenticate users using third-party social identity providers or create your own identity store.
-* _Amazon Cognito Sync_**:**\
-  ****Synchronize identities across multiple devices and the web.
+* ***Amazon Cognito Sync store***
+  Authenticate users using third-party social identity providers or create your own identity store.
+* ***Amazon Cognito Sync***
+  Synchronize identities across multiple devices and the web.
 
 The two main components are _user pools_ and _identity pools, and_ can be used separately or together.
 
 *   **User pools**
-
-    User directories that provide sign-up and sign-in options for your app users.
-* **Identity pools**\
-  ****Enable you to grant your users access to other AWS services.
+	User directories that provide sign-up and sign-in options for your app users.
+* **Identity pools**
+	Enable you to grant your users access to other AWS services.
 
 ## User pools
 
