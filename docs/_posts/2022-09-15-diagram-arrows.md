@@ -17,7 +17,7 @@ permalink: /diagram-arrows/
 
 ## It's just an arrow!
 
-Arrows are used in almost every types of diagrams, and software architectural diagrams are no exception.
+Arrows are used in almost every type of diagram, and software architectural diagrams are no exception.
 
 Although it may seem something obvious, almost elementary, the meaning of arrows is by no means a universal concept.
 
@@ -74,9 +74,9 @@ For example, in a diagram titled "*Data ingestion flow*", it's probably pretty m
 
 In my experience it is also useful to attach a short **description** to help the reader interpret the diagram, providing a high-level overview that describes its purpose.
 
-Obviously writing a description or a legend are time-consuming activities, and therefore you have to evaluate the cost/benefit ratio.
+Obviously writing descriptions and legends are time-consuming activities, and therefore you have to evaluate the cost/benefit ratio.
 
-Fortunately, in some cases the **context** can be very useful to clarify the meaning of an arrow, or any other symbol within a diagram, but it's risky to assume that the context is clear to everyone and that any recipient will always be able to understand what we have in mind.
+Fortunately, in some cases, the **context** can be very useful to clarify the meaning of an arrow, or any other symbol within a diagram. But it's risky to assume that the context is clear to everyone and that any recipient will always be able to understand what we have in mind.
 
 Of course, if the recipients of the diagram are people with whom you usually work, there is likely a kind of ***shared common language***, so in most cases it's not necessary to be super specific. Also, in case of doubt, it's easy to ask for clarification.   
 But when the diagram is going to be shared with another team, it is definitely a good idea to spend some extra time to make it as much clear as possible.  

@@ -1,6 +1,10 @@
 .text-align-center {
     text-align: center;
   }
+
+  .text-align-right {
+    text-align: right;
+  }
   
   img.centered {
     display: block;
@@ -23,16 +27,32 @@ img.float-right {
   margin-right: 0.8rem;
 }
 
-img.max-width-70 {
-  max-width: 70%;
-}
+  img.max-width-70 {
+    max-width: 70%;
+  }
 
   img.max-width-50 {
     max-width: 50%;
   }
 
+  img.max-width-40 {
+    max-width: 40%;
+  }
+
   img.max-width-30 {
     max-width: 30%;
+  }
+
+  img.max-width-120px {
+    max-width: 120px;
+  }
+
+  img.max-width-90px {
+    max-width: 90px;
+  }
+
+  img.max-width-80px {
+    max-width: 80px;
   }
 
   .image-caption {
