@@ -160,7 +160,7 @@ Here is a comparison of some key metrics collected while using the three differe
 
 | Metric | Just write | +Compaction | +Compaction +Vacuum |
 | --- | ---- | ---- | ---- |
-| Number of snapshots () | ~320/day | 10 | 10 |
+| Number of snapshots | ~320/day | 10 | 10 |
 | Number of **metadata** files per day | 2,200  | 10,500 | 67 |
 | Size of **metadata** files per day | 5,200 MB  | 7,900 MB | 100 MB |
 | Number of **data** files per day | ~300K  | ~800K | 50K |
