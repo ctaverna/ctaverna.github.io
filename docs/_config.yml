@@ -113,13 +113,14 @@ social-network-links:
   email: "taverna.claudio@gmail.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
 #  facebook: deanattali
+  linkedin: claudio-taverna
   github: ctaverna
+  bluesky: ctaverna.bsky.social
+  medium: claudiotaverna
   twitter: ClaudioTaverna
 #  patreon: DeanAttali
 #  youtube: c/daattali
-  medium: claudiotaverna
 #  reddit: yourname
-  linkedin: claudio-taverna
 #  xing: yourname
   stackoverflow: "3119382/ctaverna"
 #  snapchat: deanat78
@@ -137,6 +138,7 @@ social-network-links:
 #  discord: invite/invite_code or users/userid 
 #  kaggle: yourname
   hackerrank: ctaverna
+  
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
