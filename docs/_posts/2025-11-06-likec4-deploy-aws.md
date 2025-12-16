@@ -10,10 +10,10 @@ permalink: /likec4-deploy-aws/
 
 {: .toc .toc-title}
 - [What is the C4 Model?](#what-is-the-c4-model)
-      - [Context (Level 1)](#context-level-1)
-    - [- Containers (Level 2)](#--containers-level-2)
-  - [Components (Level 3)](#components-level-3)
-  - [Code (Level 4)](#code-level-4)
+    - [Context (Level 1)](#context-level-1)
+    - [Containers (Level 2)](#containers-level-2)
+    - [Components (Level 3)](#components-level-3)
+    - [Code (Level 4)](#code-level-4)
 - [Advantages of "Diagram as Code"](#advantages-of-diagram-as-code)
   - [Speed and Efficiency](#speed-and-efficiency)
   - [Consistency and Accuracy](#consistency-and-accuracy)
@@ -23,8 +23,8 @@ permalink: /likec4-deploy-aws/
 - [Let's Build an Example of an Architecture Documentation with LikeC4](#lets-build-an-example-of-an-architecture-documentation-with-likec4)
   - [Step 1: Setting up the Project Structure](#step-1-setting-up-the-project-structure)
   - [Step 2: Defining the Language](#step-2-defining-the-language)
-  - [Step 3: The corporate landscape (workspace.c4)](#step-3-the-corporate-landscape-workspacec4)
-  - [Step 4: The E-commerce Architecture (model.c4)](#step-4-the-e-commerce-architecture-modelc4)
+  - [Step 3: The corporate landscape](#step-3-the-corporate-landscape)
+  - [Step 4: The E-commerce Architecture](#step-4-the-e-commerce-architecture)
   - [Step 5: Visualizing the Architecture](#step-5-visualizing-the-architecture)
 - [LikeC4 CLI and local testing](#likec4-cli-and-local-testing)
 - [Shipping your Architecture Docs to AWS (The Manual Way)](#shipping-your-architecture-docs-to-aws-the-manual-way)
@@ -42,8 +42,7 @@ permalink: /likec4-deploy-aws/
 The [C4 model](https://c4model.com){:target="_blank"} is an approach for structuring and visualizing software architecture design. It was created by [Simon Brown](https://simonbrown.je){:target="_blank"}.  
 It aims to provide different levels of detail, much like maps: from a high-level view down to the code.
 It stands for Context, Containers, Components, and Code.
-
-These are the four hierarchical levels of abstraction:  
+These are the four hierarchical levels of abstraction:
 
 ### Context (Level 1)
 
@@ -171,7 +170,7 @@ specification {
 }
 ```
 
-## Step 3: The corporate landscape (workspace.c4)
+## Step 3: The corporate landscape
 
 Here we define the "Global Context."  
 This includes, for example, an External Warehouse System that provides stock data.
@@ -192,7 +191,7 @@ model {
 }
 ```
 
-## Step 4: The E-commerce Architecture (model.c4)
+## Step 4: The E-commerce Architecture
 
 Now, we define our internal system.  
 Notice, as a suggested best practice, how relationships are defined inside the source element (the active actor).
