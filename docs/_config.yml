@@ -63,22 +63,12 @@ plugins:
 
 
 
-collections:
-  aws-study-guide:
-    output: true
-
-
-
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
   About me: "about"
-  AWS study guide: "aws-study-guide"
-#  Resources:
-#    - AWS study guide: "aws-study-guide"
-#    - Pippone: "pippo"
 #  Resources:
 #    - Beautiful Jekyll: "https://beautifuljekyll.com"
 #    - Learn markdown: "https://www.markdowntutorial.com/"
@@ -312,7 +302,7 @@ date_format: "%B %-d, %Y"
 #################################################################################
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Toronto"
+timezone: "Europe/Rome"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
@@ -329,7 +319,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      comments: true  # add comments to all blog posts
+      comments: false  # no comment provider configured yet
       social-share: true # add social media sharing buttons to all blog posts
   -
     scope:
