@@ -4,6 +4,20 @@ Source of [ctaverna.github.io](https://ctaverna.github.io), a Jekyll site that l
 `docs/`, with the [`ctaverna/beautiful-jekyll`](https://github.com/ctaverna/beautiful-jekyll) remote
 theme.
 
+## Theme
+
+`remote_theme` in `docs/_config.yml` is pinned to a tag of the fork (`@ctaverna-AAAA-MM-DD`), so a
+push to the fork never changes the site by itself. The fork follows
+[`daattali/beautiful-jekyll`](https://github.com/daattali/beautiful-jekyll) plus a few small tweaks
+(bold post dates, social links in a new tab). To update it:
+
+1. in the fork, merge `upstream/master`, check the result with a local build, tag it
+   `ctaverna-AAAA-MM-DD` and push `master` with the tag;
+2. here, move the pin in `docs/_config.yml` to the new tag and run `docs/serve.sh build`.
+
+Site-specific changes go in this repo, not in the fork: CSS in `docs/assets/css/` (listed in
+`site-css`), and theme includes overridden by a file with the same name in `docs/_includes/`.
+
 ## Local preview
 
 Only Docker is needed:

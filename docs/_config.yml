@@ -32,7 +32,7 @@ github_username:  ctaverna
 # Build settings
 #theme: minima
 #remote_theme: pages-themes/midnight@v0.2.0
-remote_theme: ctaverna/beautiful-jekyll
+remote_theme: ctaverna/beautiful-jekyll@ctaverna-2026-11-26 # pinned: see README
 
 plugins:
   - jekyll-feed
