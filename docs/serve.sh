@@ -27,7 +27,10 @@ if [[ ${1-} == build ]]; then
   run -e JEKYLL_ENV=production "$image" \
     sh -c 'bundle install --quiet && bundle exec jekyll build "$@"' jekyll "$@"
 else
-  run -p 4000:4000 -p 35729:35729 "$image" \
+  # JEKYLL_ENV=production: in "development" jekyll serve replaces site.url with the address it
+  # listens on, 0.0.0.0 inside the container, and browsers block images loaded from 0.0.0.0.
+  # The URL comes from _config_local.yml instead (localhost:4000, analytics off).
+  run -e JEKYLL_ENV=production -p 4000:4000 -p 35729:35729 "$image" \
     sh -c 'bundle install --quiet && exec bundle exec jekyll serve --host 0.0.0.0 \
       --livereload --force_polling --config _config.yml,_config_local.yml "$@"' jekyll "$@"
 fi
