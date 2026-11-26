@@ -205,7 +205,6 @@ site-css:
   - "/assets/css/beautifuljekyll_override.css"
   - "/assets/css/custom.css"
   - "/assets/css/img.css"
-  - "/assets/css/consent.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
 #site-js:
