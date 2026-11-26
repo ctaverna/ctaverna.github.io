@@ -16,7 +16,14 @@ push to the fork never changes the site by itself. The fork follows
 2. here, move the pin in `docs/_config.yml` to the new tag and run `docs/serve.sh build`.
 
 Site-specific changes go in this repo, not in the fork: CSS in `docs/assets/css/` (listed in
-`site-css`), and theme includes overridden by a file with the same name in `docs/_includes/`.
+`site-css`), and theme files overridden by a file with the same path under `docs/`. These are
+copies of the theme's files, so after updating the theme compare them with the new versions:
+
+- `docs/_layouts/post.html` — tags moved to the header, "Read next" instead of Previous/Next;
+- `docs/_includes/header.html` — tags after the post date;
+- `docs/_includes/social-share.html` — adds Bluesky, Hacker News and "copy link".
+
+`docs/_includes/read-next.html` is the site's own (related posts by shared tags).
 
 ## Local preview
 

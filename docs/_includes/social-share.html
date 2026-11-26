@@ -1,0 +1,79 @@
+{% comment %}
+  Overrides the theme's social-share.html, to add Bluesky, Hacker News and "copy link".
+  Buttons are switched on in _config.yml under share-links-active; colours in
+  assets/css/beautifuljekyll_override.css.
+{% endcomment %}
+{% assign share = site.share-links-active %}
+{% assign share_url = page.url | absolute_url %}
+{% assign share_title = page.title | strip_html %}
+{% if share.linkedin or share.bluesky or share.twitter or share.hackernews or share.reddit or share.copylink %}
+<section id="social-share-section">
+  <span class="sr-only">Share: </span>
+
+  {% if share.linkedin %}
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ share_url | url_encode }}"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn" target="_blank" rel="noopener">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  {% endif %}
+
+  {% if share.bluesky %}
+    {% capture bsky_text %}{{ share_title }} {{ share_url }}{% endcapture %}
+    <a href="https://bsky.app/intent/compose?text={{ bsky_text | url_encode }}"
+      class="btn btn-social-icon btn-bluesky" title="Share on Bluesky" target="_blank" rel="noopener">
+      <span class="fab fa-fw fa-bluesky" aria-hidden="true"></span>
+      <span class="sr-only">Bluesky</span>
+    </a>
+  {% endif %}
+
+  {% if share.twitter %}
+    <a href="https://twitter.com/intent/tweet?text={{ share_title | url_encode }}&url={{ share_url | url_encode }}"
+      class="btn btn-social-icon btn-twitter" title="Share on X (Twitter)" target="_blank" rel="noopener">
+      <span class="fab fa-fw fa-x-twitter" aria-hidden="true"></span>
+      <span class="sr-only">X (Twitter)</span>
+    </a>
+  {% endif %}
+
+  {% if share.hackernews %}
+    <a href="https://news.ycombinator.com/submitlink?u={{ share_url | url_encode }}&t={{ share_title | url_encode }}"
+      class="btn btn-social-icon btn-hackernews" title="Share on Hacker News" target="_blank" rel="noopener">
+      <span class="fab fa-fw fa-hacker-news" aria-hidden="true"></span>
+      <span class="sr-only">Hacker News</span>
+    </a>
+  {% endif %}
+
+  {% if share.reddit %}
+    <a href="https://www.reddit.com/submit?url={{ share_url | url_encode }}&title={{ share_title | url_encode }}"
+      class="btn btn-social-icon btn-reddit" title="Share on Reddit" target="_blank" rel="noopener">
+      <span class="fab fa-fw fa-reddit" aria-hidden="true"></span>
+      <span class="sr-only">Reddit</span>
+    </a>
+  {% endif %}
+
+  {% if share.copylink %}
+    <button type="button" class="btn btn-social-icon btn-copylink" title="Copy link"
+      data-url="{{ share_url }}">
+      <span class="fas fa-fw fa-link" aria-hidden="true"></span>
+      <span class="sr-only">Copy link</span>
+    </button>
+    <script>
+      (function () {
+        var btn = document.querySelector('#social-share-section .btn-copylink');
+        if (!btn || !navigator.clipboard) { if (btn) btn.hidden = true; return; }
+        btn.addEventListener('click', function () {
+          navigator.clipboard.writeText(btn.getAttribute('data-url')).then(function () {
+            var icon = btn.querySelector('.fas');
+            icon.classList.replace('fa-link', 'fa-check');
+            btn.title = 'Link copied';
+            setTimeout(function () {
+              icon.classList.replace('fa-check', 'fa-link');
+              btn.title = 'Copy link';
+            }, 2000);
+          });
+        });
+      })();
+    </script>
+  {% endif %}
+</section>
+{% endif %}
