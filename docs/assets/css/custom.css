@@ -66,25 +66,12 @@ img.float-right {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
-  @media (min-width: 1200px) {
-    ul.toc {
-      width: 25% !important;
-      float: right !important;
-    }
-  }
-
-  @media (min-width: 500px) {
-    ul.toc {
-      width: 33% !important;
-      float: right !important;
-    }
-  }
-
 ul.toc {
   float: none;
   width: 95%;
   /* text-transform: uppercase; */
-  font-size: 0.8125rem;
+  font-size: 0.75rem;   /* was 0.8125rem, all bold */
+  line-height: 1.5;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin: 5px;
   list-style-position: outside;
@@ -93,7 +80,34 @@ ul.toc {
   padding-inline-start: 15px;
   border-left: 4px solid #f0f0f0;
   padding-left: 5px;
-  font-weight: bold;
+  font-weight: 400;
+}
+
+/* Table of contents placement:
+   - narrow screens: full width at the top of the post (above)
+   - from 500px: floated right inside the text, a third of the column
+   - from 1280px: out of the column, in the right margin, sticky while scrolling
+     (the negative right margin equals width + gap, so it takes no room from the text) */
+@media (min-width: 500px) {
+  ul.toc {
+    width: 33%;
+    float: right;
+  }
+}
+
+@media (min-width: 1280px) {
+  ul.toc {
+    /* centred in the free space on the right of the column, but never more than
+       6rem from the text: (free space - width) / 2, clamped to 2rem..6rem */
+    --toc-width: 14rem;
+    --toc-gap: clamp(2rem, calc((100vw - 46rem) / 4 - var(--toc-width) / 2), 6rem);
+    width: var(--toc-width);
+    margin: 0 calc(-1 * (var(--toc-width) + var(--toc-gap))) 1rem var(--toc-gap);
+    position: sticky;
+    top: 5rem;                      /* below the fixed navbar */
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+  }
 }
 
   ul.toc ul {
@@ -106,9 +120,6 @@ ul.toc {
     margin-left: 3px;
 }
 
-ul.toc>li {
-  border-bottom: 1px dotted lightgray;
-}
 
 
 ul.toc li a {
@@ -123,16 +134,40 @@ ul.toc li ul li ul li a {
   color: #767676;
 }
 
+/* No bold anywhere (it widened entries and made them wrap): top-level entries
+   are just a darker grey than the nested ones */
+ul.toc > li > a {
+  color: #4a4a4a;
+}
+
+/* Every entry is a block with a little horizontal padding, so the highlight of
+   the section being read (assets/js/toc.js) is a band that changes no width */
+ul.toc li a {
+  display: block;
+  padding: 0.05rem 0.4rem;
+  margin: 0 -0.4rem;
+  border-radius: 0.25rem;
+}
+
+ul.toc a.active {
+  color: var(--link-col);
+  background-color: #eaf2fb;
+}
+
+ul.toc a:hover {
+  text-decoration: none;
+  background-color: #f3f5f7;
+}
+
 ul.toc-title::before {
   text-transform: uppercase;
   content: "On this page";
-  font-weight: 900;
-  color: white;
-  background: #c7c7c7;
   display: block;
-  padding-left: 7px;
-  border-radius: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #767676;   /* was white on a grey pill */
 }
 
 
@@ -200,4 +235,25 @@ ul.toc-title::before {
   font-family: "'Times New Roman', Times, serif";
   float: right;
   color: #d1d1d1;
+}
+
+/* Phones: floated images and quotes leave the text a column a few characters
+   wide, so below 576px they stop floating and are centred above the text */
+@media (max-width: 575.98px) {
+  .blog-post img.float-right,
+  .blog-post img.float-left {
+    float: none !important;
+    display: block;
+    margin: 1rem auto;
+    max-width: min(75%, 20rem);
+  }
+
+  .box-citation.float-right,
+  .box-citation.float-left,
+  .box-citation.max-width-50,
+  .box-citation.max-width-30 {
+    float: none !important;
+    max-width: 100%;
+    margin: 1rem 0;
+  }
 }
