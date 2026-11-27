@@ -32,7 +32,7 @@ github_username:  ctaverna
 # Build settings
 #theme: minima
 #remote_theme: pages-themes/midnight@v0.2.0
-remote_theme: ctaverna/beautiful-jekyll
+remote_theme: ctaverna/beautiful-jekyll@ctaverna-2026-11-26 # pinned: see README
 
 plugins:
   - jekyll-feed
@@ -63,22 +63,12 @@ plugins:
 
 
 
-collections:
-  aws-study-guide:
-    output: true
-
-
-
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
   About me: "about"
-  AWS study guide: "aws-study-guide"
-#  Resources:
-#    - AWS study guide: "aws-study-guide"
-#    - Pippone: "pippo"
 #  Resources:
 #    - Beautiful Jekyll: "https://beautifuljekyll.com"
 #    - Learn markdown: "https://www.markdowntutorial.com/"
@@ -91,7 +81,7 @@ navbar-links:
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
 #avatar: "/assets/img/avatar-icon.png"
-avatar: "/assets/img/avatar_2023_small.jpg"
+avatar: "/assets/img/avatar.jpg"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -116,13 +106,13 @@ social-network-links:
   linkedin: claudio-taverna
   github: ctaverna
   bluesky: ctaverna.bsky.social
-  medium: claudiotaverna
+#  medium: claudiotaverna
   twitter: ClaudioTaverna
 #  patreon: DeanAttali
 #  youtube: c/daattali
 #  reddit: yourname
 #  xing: yourname
-  stackoverflow: "3119382/ctaverna"
+#  stackoverflow: "3119382/ctaverna"
 #  snapchat: deanat78
 #  instagram: deanat78
 #  spotify: yourname
@@ -137,7 +127,7 @@ social-network-links:
 #  google-scholar: your google scholar
 #  discord: invite/invite_code or users/userid 
 #  kaggle: yourname
-  hackerrank: ctaverna
+#  hackerrank: ctaverna
   
 
 # If you want your website to generate an RSS feed, provide a description
@@ -149,10 +139,15 @@ rss-description: Claudio Taverna - A blog about software architecture
 ###########################
 
 # Select which social network share links to show in posts
+# (rendered by _includes/social-share.html, which overrides the theme's one)
 share-links-active:
-  twitter: true
-  facebook: true
   linkedin: true
+  bluesky: true
+  twitter: true
+  hackernews: true
+  reddit: true
+  copylink: true
+  facebook: false
   vk: false
 
 # How to display the link to your website in the footer
@@ -193,8 +188,8 @@ navbar-text-col: "#404040"
 navbar-border-col: "#DDDDDD"
 page-col: "#FFFFFF"
 text-col: "#404040"
-link-col: "#008AFF"
-hover-col: "#0085A1"
+link-col: "#0B66C3"
+hover-col: "#084E96"
 footer-col: "#EAEAEA"
 footer-text-col: "#777777"
 footer-link-col: "#404040"
@@ -214,7 +209,6 @@ footer-hover-col: "#0085A1"
 site-css:
   - "/assets/css/beautifuljekyll_override.css"
   - "/assets/css/custom.css"
-  - "/assets/css/img.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
 #site-js:
@@ -312,7 +306,7 @@ date_format: "%B %-d, %Y"
 #################################################################################
 
 # Output options (more information on Jekyll's site)
-timezone: "America/Toronto"
+timezone: "Europe/Rome"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
@@ -329,7 +323,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      comments: true  # add comments to all blog posts
+      comments: false  # no comment provider configured yet
       social-share: true # add social media sharing buttons to all blog posts
   -
     scope:
